@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio Translation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-title">
+            <p>Translate YouTube Audio</p>
+        </div>
+        <div class="chat-options">
+            <div class="chat-upload-url">
+                <input type="text" id="youtube-url" placeholder="Enter YouTube URL" />
+                <button id="translate-btn">Translate</button>
+            </div>
+            <div id="upload-status"></div>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

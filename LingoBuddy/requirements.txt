@@ -5,4 +5,9 @@ deep_translator
 PyPDF2
 chromadb
 python-dotenv
-sentence-transformers 
+sentence-transformers
+yt-dlp
+moviepy
+pydub 
+gtts 
+speechrecognition

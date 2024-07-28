@@ -7,4 +7,7 @@ chromadb
 python-dotenv
 sentence-transformers
 yt-dlp
-moviepy 
+moviepy
+pydub 
+gtts 
+speechrecognition

@@ -56,6 +56,42 @@ document.getElementById("upload-btn").addEventListener("click", function () {
   }
 });
 
+document.getElementById('translate-btn').addEventListener('click', function() {
+    const youtubeUrl = document.getElementById('youtube-url').value;
+
+    if (youtubeUrl.trim()) {
+        fetch('/upload_audio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ youtube_url: youtubeUrl })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const uploadStatus = document.getElementById('upload-status');
+            if (data.error) {
+                uploadStatus.textContent = `Error: ${data.error}`;
+                uploadStatus.style.color = 'red';
+            } else {
+                uploadStatus.textContent = 'Audio processed successfully!';
+                uploadStatus.style.color = 'green';
+                console.log('Response:', data.response);
+            }
+        })
+        .catch(error => {
+            const uploadStatus = document.getElementById('upload-status');
+            uploadStatus.textContent = `Error: ${error.message}`;
+            uploadStatus.style.color = 'red';
+        });
+    } else {
+        const uploadStatus = document.getElementById('upload-status');
+        uploadStatus.textContent = 'Please enter a YouTube URL.';
+        uploadStatus.style.color = 'red';
+    }
+});
+
+
 function addMessage(sender, text) {
   const message = document.createElement("div");
   message.classList.add("message", sender);
@@ -75,38 +111,3 @@ function addMessage(sender, text) {
   message.scrollIntoView();
 }
 
-document.getElementById('translate-btn').addEventListener('click', function() {
-    const youtubeUrl = document.getElementById('youtube-url').value;
-
-    if (youtubeUrl.trim()) {
-        fetch('/upload_audio', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ youtube_url: youtubeUrl })
-        })
-        .then(response => response.json())
-        .then(data => {
-            const uploadStatus = document.getElementById('upload-status');
-            if (data.error) {
-                uploadStatus.textContent = `Error: ${data.error}`;
-                uploadStatus.style.color = 'red';
-            } else {
-                uploadStatus.textContent = 'Audio translated successfully!';
-                uploadStatus.style.color = 'green';
-                console.log('Translated text:', data.response);
-                addMessage('bot', data.response);
-            }
-        })
-        .catch(error => {
-            const uploadStatus = document.getElementById('upload-status');
-            uploadStatus.textContent = `Error: ${error.message}`;
-            uploadStatus.style.color = 'red';
-        });
-    } else {
-        const uploadStatus = document.getElementById('upload-status');
-        uploadStatus.textContent = 'Please enter a YouTube URL.';
-        uploadStatus.style.color = 'red';
-    }
-});

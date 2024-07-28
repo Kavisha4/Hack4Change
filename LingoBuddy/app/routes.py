@@ -175,6 +175,7 @@ def get_youtube_audio_stream(youtube_url):
         }],
     }
     audio_data = io.BytesIO()
+    print("Processing")
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         result = ydl.extract_info(youtube_url, download=False)
         audio_stream_url = result['url']
@@ -183,7 +184,16 @@ def get_youtube_audio_stream(youtube_url):
             if chunk:
                 audio_data.write(chunk)
     audio_data.seek(0)
+    print("Done")
     return audio_data
+
+def save_audio_to_file(audio_data, filename, folder='audio'):
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    filepath = os.path.join(folder, filename)
+    with open(filepath, 'wb') as f:
+        f.write(audio_data.read())
+    return filepath
 
 @app.route('/upload_audio', methods=['POST'])
 def upload_audio():
@@ -194,14 +204,16 @@ def upload_audio():
 
     try:
         audio_data = get_youtube_audio_stream(youtube_url)
+        audio_filename = "extracted_audio.mp3"
+        saved_filepath = save_audio_to_file(audio_data, audio_filename)
 
         files = {
-            'file': ('audio.mp3', audio_data, 'audio/mpeg')
+            'file': (audio_filename, open(saved_filepath, 'rb'), 'audio/mpeg')
         }
         payload = {
             'model': 'whisper-v3',
             'prompt': 'null',
-            'response_format': 'json',
+            'response_format': 'string',
             'temperature': 0.5
         }
         headers = {
@@ -217,3 +229,4 @@ def upload_audio():
         return jsonify({"response": response_data}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+

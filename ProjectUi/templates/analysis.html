@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .fGroup {
+            margin-bottom: 15px;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .content li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Analysis</h2>
+        <form action="/analysis" method="post">
+            <div class="fGroup">
+                <label for="subject">Select a subject:</label>
+                <select id="subject" name="subject" required>
+                    {% for subject in subjects %}
+                        <option value="{{ subject }}" {% if subject == selected_subject %}selected{% endif %}>{{ subject }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="fGroup">
+                <label for="skill_level">Select your skill level:</label>
+                <select id="skill_level" name="skill_level" required>
+                    <option value="Beginner" {% if selected_skill_level == 'Beginner' %}selected{% endif %}>Beginner</option>
+                    <option value="Intermediate" {% if selected_skill_level == 'Intermediate' %}selected{% endif %}>Intermediate</option>
+                    <option value="Advanced" {% if selected_skill_level == 'Advanced' %}selected{% endif %}>Advanced</option>
+                </select>
+            </div>
+            <button type="submit">Show Recommendations</button>
+        </form>
+        {% if recommended_content %}
+        <div class="content">
+            <h3>Recommended Content</h3>
+            <ul>
+                {% for content in recommended_content %}
+                    <li>{{ content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

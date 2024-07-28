@@ -57,6 +57,16 @@
           var fileName = this.files[0].name;
           document.getElementById("file-name").textContent = fileName;
         });
+
+      // Modify the first char as capital letter
+      document
+        .getElementById("user-input")
+        .addEventListener("input", function () {
+          var input = this.value;
+          if (input.length > 0) {
+            this.value = input.charAt(0).toUpperCase() + input.slice(1);
+          }
+        });
     </script>
   </body>
 </html>

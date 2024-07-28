@@ -27,7 +27,7 @@ def get_response():
     headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "Authorization": "Bearer YyPiJjsgNkGJRrg7JNjT6mBGAft8mQyAGoXG87YVk2Y6qo7A"
+    "Authorization": "Bearer <API_KEY>"
     }
     response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
     data = response.json()

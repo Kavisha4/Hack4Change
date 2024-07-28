@@ -2,6 +2,7 @@ from flask import current_app as app, render_template, request, jsonify
 import requests
 import os
 import json
+from googletrans import Translator
 
 @app.route("/")
 def index():
@@ -10,6 +11,11 @@ def index():
 @app.route("/get_response", methods=["POST"])
 def get_response():
     user_input = request.json.get("message")
+
+    # Translate user input from Tamil to English
+    translator = Translator()
+    translated_input = translator.translate(user_input, src='ta', dest='en').text
+
     url = "https://api.fireworks.ai/inference/v1/chat/completions"
     payload = {
     "model": "accounts/fireworks/models/mixtral-8x22b-instruct",
@@ -27,7 +33,7 @@ def get_response():
     headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "Authorization": "Bearer <API_KEY>"
+    "Authorization": "Bearer <API KEY>"
     }
     response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
     data = response.json()
@@ -36,6 +42,9 @@ def get_response():
     print("Response Status Code:", response.status_code)
     print("Response Data:", json.dumps(data, indent=2))
 
-    bot_response = data.get("choices", [{}])[0].get("message", {}).get("content", "Sorry, I couldn't process that.")
+    api_response = data.get("choices", [{}])[0].get("message", {}).get("content", "Sorry, I couldn't process that.")
 
-    return jsonify({"response": bot_response})
+    # Translate API response from English to Tamil
+    translated_response = translator.translate(api_response, src='en', dest='ta').text
+
+    return jsonify({"response": translated_response})

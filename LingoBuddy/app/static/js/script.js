@@ -97,16 +97,29 @@ function addMessage(sender, text) {
   message.classList.add("message", sender);
   message.textContent = text;
   const lineBreak = document.createElement("br");
-  var icon = document.createElement("img");
+
+  var chatIconDiv = document.createElement("div");
+  var img = document.createElement("img");
+  var chatName = document.createElement("p");
   if (sender === "bot") {
-    icon.className = "bot-img";
-    icon.src = "/static/images/bot.png";
+    chatIconDiv.className = "chat-icon-div chat-icon-div-bot";
+    img.className = "bot-img";
+    img.src = "/static/images/bot.png";
+    chatName.className = "chat-name chat-name-bot";
+    chatName.textContent = "LingoBuddy";
   } else {
-    icon.className = "user-img";
-    icon.src = "/static/images/user.png') }}";
+    chatIconDiv.className = "chat-icon-div chat-icon-div-user";
+    img.className = "user-img";
+    img.src = "/static/images/user.png";
+    chatName.className = "chat-name chat-name-user";
+    chatName.textContent = "User";
   }
+
+  chatIconDiv.appendChild(img);
+  chatIconDiv.appendChild(chatName);
+
   document.getElementById("chat-box").appendChild(lineBreak);
-  document.getElementById("chat-box").appendChild(icon);
+  document.getElementById("chat-box").appendChild(chatIconDiv);
   document.getElementById("chat-box").appendChild(message);
   message.scrollIntoView();
 }

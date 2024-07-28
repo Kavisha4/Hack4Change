@@ -166,13 +166,33 @@ body {
   text-align: right;
 }
 
-.bot-img {
-  margin-right: 10px;
+.chat-icon-div {
+  width: 100px;
+  justify-content: center;
+  align-items: center;
 }
 
-.user-img {
+.chat-icon-div-bot {
+  float: left;
+}
+
+.chat-icon-div-user {
   float: right;
-  margin-left: 10px;
+}
+
+.bot-img,
+.user-img {
+  width: 100px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.chat-name {
+  text-align: center;
+  color: dodgerblue;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .input-area {

@@ -166,6 +166,15 @@ body {
   text-align: right;
 }
 
+.bot-img {
+  margin-right: 10px;
+}
+
+.user-img {
+  float: right;
+  margin-left: 10px;
+}
+
 .input-area {
   display: flex;
 }

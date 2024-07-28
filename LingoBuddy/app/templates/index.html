@@ -40,7 +40,19 @@
         </div>
       </div>
       <div class="chat-box" id="chat-box">
+        <img
+          class="bot-img"
+          src="{{ url_for('static', filename='images/bot.png') }}"
+        />
         <div class="message bot">
+          Welcome to LingoBuddy! How can I assist you today?
+        </div>
+        <br />
+        <img
+          class="user-img"
+          src="{{ url_for('static', filename='images/user.png') }}"
+        />
+        <div class="message user">
           Welcome to LingoBuddy! How can I assist you today?
         </div>
       </div>

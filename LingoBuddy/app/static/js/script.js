@@ -67,7 +67,7 @@ function addMessage(sender, text) {
     icon.src = "/static/images/bot.png";
   } else {
     icon.className = "user-img";
-    icon.src = "/static/images/user.png') }}";
+    icon.src = "/static/images/user.png";
   }
   document.getElementById("chat-box").appendChild(lineBreak);
   document.getElementById("chat-box").appendChild(icon);

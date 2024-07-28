@@ -166,8 +166,12 @@ body {
   text-align: right;
 }
 
+.input-area {
+  display: flex;
+}
+
 #user-input {
-  width: calc(100% - 200px);
+  flex: 5;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -184,7 +188,11 @@ body {
 
 #send-btn,
 #end-btn {
+  flex: 1;
+  margin-left: 5px;
+  margin-right: 5px;
   padding: 10px 15px;
+  font-weight: 500;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -198,7 +206,4 @@ body {
 #end-btn {
   background-color: #ff4b4b;
   color: white;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
 }

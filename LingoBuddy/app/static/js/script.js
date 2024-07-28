@@ -15,10 +15,40 @@ document.getElementById('send-btn').addEventListener('click', function() {
     }
 });
 
-document.getElementById('end-btn').addEventListener('click', function() {
-    addMessage('bot', 'Thank you for using LingoBuddy! Have a great day!');
-    document.getElementById('user-input').disabled = true;
-    document.getElementById('send-btn').disabled = true;
+document.getElementById('upload-btn').addEventListener('click', function() {
+    const fileInput = document.getElementById('file-input');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/upload_pdf', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const uploadStatus = document.getElementById('upload-status');
+            if (data.error) {
+                uploadStatus.textContent = `Error: ${data.error}`;
+                uploadStatus.style.color = 'red';
+            } else {
+                uploadStatus.textContent = 'File uploaded successfully!';
+                uploadStatus.style.color = 'green';
+                console.log('Extracted text:', data.content);
+            }
+        })
+        .catch(error => {
+            const uploadStatus = document.getElementById('upload-status');
+            uploadStatus.textContent = `Error: ${error.message}`;
+            uploadStatus.style.color = 'red';
+        });
+    } else {
+        const uploadStatus = document.getElementById('upload-status');
+        uploadStatus.textContent = 'Please select a file to upload.';
+        uploadStatus.style.color = 'red';
+    }
 });
 
 function addMessage(sender, text) {

@@ -1,4 +1,8 @@
 Flask==2.0.1
 Werkzeug==2.0.1
 requests
-googletrans==4.0.0-rc1
+googletrans
+PyPDF2
+chromadb
+python-dotenv
+sentence-transformers 

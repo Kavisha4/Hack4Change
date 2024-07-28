@@ -6,6 +6,12 @@
   font-style: normal;
 }
 
+button,
+input,
+select {
+  font-family: "Montserrat", sans-serif;
+}
+
 body {
   background-color: #f4f4f9;
   display: flex;
@@ -41,6 +47,8 @@ body {
   position: relative;
   color: dodgerblue;
   top: -10px;
+  margin: 0;
+  padding: 0;
 }
 
 .chat-title p span {
@@ -51,6 +59,59 @@ body {
   height: 300px;
   overflow-y: auto;
   margin-bottom: 20px;
+}
+
+.chat-options {
+  margin-top: 10px;
+}
+
+.file-upload-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.file-upload-button {
+  border: 2px solid rgb(189, 215, 242);
+  background-color: rgb(189, 215, 242);
+  color: black;
+  padding: 7.5px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.file-upload-input {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.file-name {
+  display: inline;
+  position: relative;
+  top: -12.5px;
+  left: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#upload-btn {
+  display: inline;
+  position: absolute;
+  right: 30px;
+
+  border: 2px solid dodgerblue;
+  color: white;
+  background-color: dodgerblue;
+  padding: 7.5px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .message {

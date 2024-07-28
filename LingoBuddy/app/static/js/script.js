@@ -61,7 +61,16 @@ function addMessage(sender, text) {
   message.classList.add("message", sender);
   message.textContent = text;
   const lineBreak = document.createElement("br");
+  var icon = document.createElement("img");
+  if (sender === "bot") {
+    icon.className = "bot-img";
+    icon.src = "{{ url_for('static', filename='images/bot.png') }}";
+  } else {
+    icon.className = "user-img";
+    icon.src = "{{ url_for('static', filename='images/user.png') }}";
+  }
   document.getElementById("chat-box").appendChild(lineBreak);
+  document.getElementById("chat-box").appendChild(icon);
   document.getElementById("chat-box").appendChild(message);
   message.scrollIntoView();
 }

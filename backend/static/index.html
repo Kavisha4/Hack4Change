@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<title>Title</title>
+<style>
+  #data {
+    text-align: center;
+  }
+</style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+  if (!!window.EventSource) {
+    var source = new EventSource("/");
+    var data = $("#data").text();
+    source.onmessage = function (e) {
+      data = data + " " + e.data;
+      $("#data").text(data);
+    };
+  }
+</script>
+<div id="data">nothing received yet</div>

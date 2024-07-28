@@ -64,10 +64,10 @@ function addMessage(sender, text) {
   var icon = document.createElement("img");
   if (sender === "bot") {
     icon.className = "bot-img";
-    icon.src = "{{ url_for('static', filename='images/bot.png') }}";
+    icon.src = "/static/images/bot.png";
   } else {
     icon.className = "user-img";
-    icon.src = "{{ url_for('static', filename='images/user.png') }}";
+    icon.src = "/static/images/user.png') }}";
   }
   document.getElementById("chat-box").appendChild(lineBreak);
   document.getElementById("chat-box").appendChild(icon);

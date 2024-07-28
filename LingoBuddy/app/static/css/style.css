@@ -55,12 +55,6 @@ body {
   color: orange;
 }
 
-.chat-box {
-  height: 300px;
-  overflow-y: auto;
-  margin-bottom: 20px;
-}
-
 .chat-options {
   margin-top: 10px;
 }
@@ -114,34 +108,100 @@ body {
   font-size: 14px;
 }
 
+.file-upload-button:disabled,
+#upload-btn:disabled {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  cursor: not-allowed;
+  color: #666666;
+}
+
+.chat-select-language {
+  margin-top: 10px;
+}
+
+.chat-select-language p {
+  display: inline;
+}
+
+.chat-select-language select {
+  display: inline;
+  margin-left: 10px;
+  padding: 5px 20px 5px 20px;
+  border: 1px solid black;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+  color: dodgerblue;
+}
+
+.chat-box {
+  height: 250px;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-y: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .message {
+  display: inline-block;
   padding: 10px;
-  border-radius: 5px 20px 20px 10px;
   margin-bottom: 10px;
 }
 
 .bot {
-  background-color: #e0e0e0;
+  background-color: #ffffff;
+  border: 1px solid rgb(107, 107, 107);
+  border-radius: 5px 20px 20px 10px;
   text-align: left;
 }
 
 .user {
-  background-color: #0084ff;
+  float: right;
+  background-color: #329cff;
   color: white;
+  border-radius: 20px 5px 10px 20px;
   text-align: right;
 }
 
+.bot-img {
+  margin-right: 10px;
+}
+
+.user-img {
+  float: right;
+  margin-left: 10px;
+}
+
+.input-area {
+  display: flex;
+}
+
 #user-input {
-  width: calc(100% - 100px);
+  flex: 5;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  border: 1px solid black;
+}
+
+#user-input:focus {
+  border: 2px solid dodgerblue;
 }
 
 #send-btn,
 #end-btn {
+  flex: 1;
+  margin-left: 5px;
+  margin-right: 5px;
   padding: 10px 15px;
+  font-weight: 500;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -155,7 +215,4 @@ body {
 #end-btn {
   background-color: #ff4b4b;
   color: white;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
 }

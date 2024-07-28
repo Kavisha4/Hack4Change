@@ -2,13 +2,15 @@ from flask import current_app as app, render_template, request, jsonify
 import requests
 import os
 import json
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 from werkzeug.utils import secure_filename
 import PyPDF2
+import re
 import chromadb
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf'}
+local_embeddings = []
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 chroma_client = chromadb.Client()
@@ -39,10 +41,8 @@ def upload_pdf():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
 
-        # Extract text from PDF
         text_content = extract_text_from_pdf(filepath)
 
-        # Create embeddings of the extracted text and store in Chroma
         create_and_store_embeddings(text_content, filename)
 
         return jsonify({'message': 'File uploaded successfully!', 'content': text_content}), 200
@@ -70,9 +70,8 @@ def create_and_store_embeddings(text_content, filename):
         response.raise_for_status()
         response_data = response.json()
 
-        embeddings = response_data['data']  # Extract the list of embedding objects
+        embeddings = response_data['data']  
 
-        # Prepare documents for ChromaDB
         documents = [
             {
                 "id": str(embedding['index']),
@@ -82,8 +81,8 @@ def create_and_store_embeddings(text_content, filename):
             for embedding in embeddings
         ]
 
+        local_embeddings.extend(documents)
         
-        # Add documents to ChromaDB collection
         chroma_collection.add(
             embeddings=[doc["embedding"] for doc in documents],
             metadatas=[doc["metadata"] for doc in documents],
@@ -104,7 +103,6 @@ def create_and_store_embeddings(text_content, filename):
 @app.route('/get_embeddings', methods=['GET'])
 def get_embeddings():
     try:
-        # Fetch all documents from the collection
         embeddings = chroma_collection.get()
         return jsonify({'embeddings': embeddings}), 200
     except Exception as e:
@@ -114,10 +112,18 @@ def get_embeddings():
 @app.route("/get_response", methods=["POST"])
 def get_response():
     user_input = request.json.get("message")
+    translated_input = GoogleTranslator(source='ta', target='en').translate(user_input)
 
-    # Translate user input from Tamil to English
-    translator = Translator()
-    translated_input = translator.translate(user_input, src='ta', dest='en').text
+    relevant_docs = []  
+    
+    for doc in local_embeddings:
+        if translated_input in doc['metadata']['filename']:  
+            relevant_docs.append(doc)
+
+    if relevant_docs:
+        context = " ".join([doc['embedding'] for doc in relevant_docs])
+    else:
+        context = ""
 
     url = "https://api.fireworks.ai/inference/v1/chat/completions"
     payload = {
@@ -129,9 +135,12 @@ def get_response():
     "frequency_penalty": 0,
     "temperature": 0.6,
     "messages": [{
-      "role": "user",
-      "content": user_input
-    }]
+            "role": "user",
+            "content": translated_input
+        }, {
+            "role": "system",
+            "content": context  
+        }]
     }
     headers = {
     "Accept": "application/json",
@@ -141,13 +150,10 @@ def get_response():
     response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
     data = response.json()
 
-    # Print the response details
     print("Response Status Code:", response.status_code)
     print("Response Data:", json.dumps(data, indent=2))
 
     api_response = data.get("choices", [{}])[0].get("message", {}).get("content", "Sorry, I couldn't process that.")
 
-    # Translate API response from English to Tamil
-    translated_response = translator.translate(api_response, src='en', dest='ta').text
-
+    translated_response = GoogleTranslator(source='en', target='ta').translate(api_response)
     return jsonify({"response": translated_response})

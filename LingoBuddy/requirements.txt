@@ -1,7 +1,7 @@
 Flask==2.0.1
 Werkzeug==2.0.1
 requests
-googletrans
+deep_translator
 PyPDF2
 chromadb
 python-dotenv

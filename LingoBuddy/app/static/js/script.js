@@ -36,6 +36,11 @@ document.getElementById("upload-btn").addEventListener("click", function () {
         } else {
           uploadStatus.textContent = "File uploaded successfully!";
           uploadStatus.style.color = "green";
+          document.getElementsByClassName(
+            "file-upload-button"
+          )[0].disabled = true;
+          document.getElementById("upload-btn").disabled = true;
+          document.getElementById("file-input").disabled = true;
           console.log("Extracted text:", data.content);
         }
       })

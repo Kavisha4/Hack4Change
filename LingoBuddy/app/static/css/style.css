@@ -108,6 +108,14 @@ body {
   font-size: 14px;
 }
 
+.file-upload-button:disabled,
+#upload-btn:disabled {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  cursor: not-allowed;
+  color: #666666;
+}
+
 .chat-select-language {
   margin-top: 10px;
 }

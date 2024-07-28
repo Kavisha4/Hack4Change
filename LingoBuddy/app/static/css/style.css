@@ -1,70 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .chat-container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 400px;
-    max-width: 90%;
-    padding: 20px;
-    position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 90%;
+  padding: 20px;
+  position: relative;
+}
+
+.chat-title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.chat-title img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.chat-title p {
+  display: inline-block;
+  position: relative;
+  color: dodgerblue;
+  top: -10px;
+}
+
+.chat-title p span {
+  color: orange;
 }
 
 .chat-box {
-    height: 300px;
-    overflow-y: auto;
-    margin-bottom: 20px;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
 }
 
 .message {
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px 20px 20px 10px;
+  margin-bottom: 10px;
 }
 
 .bot {
-    background-color: #e0e0e0;
-    text-align: left;
+  background-color: #e0e0e0;
+  text-align: left;
 }
 
 .user {
-    background-color: #0084ff;
-    color: white;
-    text-align: right;
+  background-color: #0084ff;
+  color: white;
+  text-align: right;
 }
 
 #user-input {
-    width: calc(100% - 100px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
+  width: calc(100% - 100px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
-#send-btn, #end-btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+#send-btn,
+#end-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #send-btn {
-    background-color: #0084ff;
-    color: white;
+  background-color: #0084ff;
+  color: white;
 }
 
 #end-btn {
-    background-color: #ff4b4b;
-    color: white;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+  background-color: #ff4b4b;
+  color: white;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }

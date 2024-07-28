@@ -1,26 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LingoBuddy</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
     <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            <div class="message bot">Welcome to LingoBuddy! How can I assist you today?</div>
+      <div class="chat-title">
+        <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
+        <p>Lingo<span>Buddy</span></p>
+      </div>
+      <div class="chat-options">
+        <div class="chat-upload-document">
+          <div class="file-upload-wrapper">
+            <input
+              type="file"
+              class="file-upload-input"
+              id="file-input"
+              accept=".pdf"
+            />
+            <button class="file-upload-button">Choose PDF File</button>
+          </div>
+          <p class="file-name" id="file-name">No file chosen</p>
+          <button id="upload-btn">Upload</button>
+          <div id="upload-status"></div>
         </div>
-        <div>
-            <input type="file" id="file-input" accept=".pdf">
-            <button id="upload-btn">Upload</button>
-            <div id="upload-status"></div>
+        <div class="chat-select-language">Select Language</div>
+      </div>
+      <div class="chat-box" id="chat-box">
+        <div class="message bot">
+          Welcome to LingoBuddy! How can I assist you today?
         </div>
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Type your message...">
-            <button id="send-btn">Send</button>
-        </div>
+      </div>
+      <div class="input-area">
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button id="send-btn">Send</button>
+      </div>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+    <script>
+      document
+        .getElementById("file-input")
+        .addEventListener("change", function () {
+          var fileName = this.files[0].name;
+          document.getElementById("file-name").textContent = fileName;
+        });
+    </script>
+  </body>
 </html>

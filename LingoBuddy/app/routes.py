@@ -5,7 +5,8 @@ import json
 from deep_translator import GoogleTranslator
 from werkzeug.utils import secure_filename
 import PyPDF2
-import re
+import yt_dlp
+import io
 import chromadb
 
 UPLOAD_FOLDER = 'uploads'
@@ -26,6 +27,10 @@ def allowed_file(filename):
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/translation")
+def translation():
+    return render_template("translation.html")
 
 @app.route('/upload_pdf', methods=['POST'])
 def upload_pdf():
@@ -157,3 +162,58 @@ def get_response():
 
     translated_response = GoogleTranslator(source='en', target='ta').translate(api_response)
     return jsonify({"response": translated_response})
+
+def get_youtube_audio_stream(youtube_url):
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'quiet': True,
+        'outtmpl': '-',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    audio_data = io.BytesIO()
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        result = ydl.extract_info(youtube_url, download=False)
+        audio_stream_url = result['url']
+        response = requests.get(audio_stream_url, stream=True)
+        for chunk in response.iter_content(chunk_size=1024):
+            if chunk:
+                audio_data.write(chunk)
+    audio_data.seek(0)
+    return audio_data
+
+@app.route('/upload_audio', methods=['POST'])
+def upload_audio():
+    data = request.get_json()
+    youtube_url = data.get('youtube_url')
+    if not youtube_url:
+        return jsonify({'error': 'No YouTube URL provided'}), 400
+
+    try:
+        audio_data = get_youtube_audio_stream(youtube_url)
+
+        files = {
+            'file': ('audio.mp3', audio_data, 'audio/mpeg')
+        }
+        payload = {
+            'model': 'whisper-v3',
+            'prompt': 'null',
+            'response_format': 'json',
+            'temperature': 0.5
+        }
+        headers = {
+            "Authorization": "Bearer YyPiJjsgNkGJRrg7JNjT6mBGAft8mQyAGoXG87YVk2Y6qo7A"
+        }
+        url = "https://api.fireworks.ai/inference/v1/audio/translations"
+        response = requests.post(url, files=files, data=payload, headers=headers)
+        response_data = response.json()
+
+        print("Response Status Code:", response.status_code)
+        print("Response Data:", json.dumps(response_data, indent=2))
+
+        return jsonify({"response": response_data}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

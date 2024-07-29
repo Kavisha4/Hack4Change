@@ -59,6 +59,14 @@ body {
   margin-top: 10px;
 }
 
+.chat-upload-document {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(228, 228, 228);
+  box-shadow: 2px 2px 3px rgb(228, 228, 228);
+}
+
 .file-upload-wrapper {
   position: relative;
   overflow: hidden;
@@ -66,10 +74,10 @@ body {
 }
 
 .file-upload-button {
-  border: 2px solid rgb(189, 215, 242);
+  border: none;
   background-color: rgb(189, 215, 242);
   color: black;
-  padding: 7.5px 20px;
+  padding: 10px 20px;
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
@@ -91,17 +99,17 @@ body {
   left: 10px;
   font-size: 14px;
   font-weight: 600;
+  color: royalblue;
 }
 
 #upload-btn {
   display: inline;
   position: absolute;
   right: 30px;
-
-  border: 2px solid dodgerblue;
+  border: none;
   color: white;
-  background-color: dodgerblue;
-  padding: 7.5px 20px;
+  background: linear-gradient(to right, dodgerblue 0%, deepskyblue 100%);
+  padding: 10px 20px;
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
@@ -118,21 +126,28 @@ body {
 
 .chat-select-language {
   margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(228, 228, 228);
+  box-shadow: 2px 2px 3px rgb(228, 228, 228);
 }
 
 .chat-select-language p {
   display: inline;
+  font-size: 14px;
 }
 
 .chat-select-language select {
   display: inline;
   margin-left: 10px;
   padding: 5px 20px 5px 20px;
-  border: 1px solid black;
+  border: 1px solid dodgerblue;
   border-radius: 30px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
+  background: white;
   color: dodgerblue;
+  box-shadow: 2px 3px 5px rgb(180, 220, 255);
 }
 
 .chat-box {
@@ -143,6 +158,7 @@ body {
   overflow-y: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+  box-shadow: 2px 2px 3px rgb(228, 228, 228);
 }
 
 .message {
@@ -160,7 +176,7 @@ body {
 
 .user {
   float: right;
-  background-color: #329cff;
+  background: linear-gradient(to right, dodgerblue 0%, deepskyblue 100%);
   color: white;
   border-radius: 20px 5px 10px 20px;
   text-align: right;
@@ -228,7 +244,7 @@ body {
 }
 
 #send-btn {
-  background-color: #0084ff;
+  background: linear-gradient(to right, dodgerblue 0%, deepskyblue 100%);
   color: white;
 }
 

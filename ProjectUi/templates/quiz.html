@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Question {{ question_index + 1 }}</h2>
+        <div class="question">{{ question['question'] }}</div>
+        <form action="/quiz" method="post">
+            <ul class="options">
+                {% for option in question['options'] %}
+                <li>
+                    <label>
+                        <input type="radio" name="option" value="{{ option }}" required>
+                        {{ option }}
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

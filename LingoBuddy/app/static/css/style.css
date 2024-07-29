@@ -314,6 +314,17 @@ body {
   color: white;
 }
 
+.select {
+  border: 2px solid rgb(202, 202, 202);
+  outline: none;
+  background: white;
+  color: dodgerblue;
+  padding: 10px 20px 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
 .btn {
   border: none;
   outline: none;
@@ -330,4 +341,12 @@ body {
 .btn:hover {
   transform: scale(0.9);
   transition: 0.3s ease all;
+}
+
+.div {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(228, 228, 228);
+  box-shadow: 2px 2px 3px rgb(228, 228, 228);
 }

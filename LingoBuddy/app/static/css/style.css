@@ -57,7 +57,6 @@ body {
   height: calc(100vh - 130px);
   background: linear-gradient(180deg, rgb(193, 240, 255) 0%, white 100%);
   border-radius: 10px;
-  box-shadow: 2px 3px 5px rgb(228, 228, 228);
 }
 
 .heading {

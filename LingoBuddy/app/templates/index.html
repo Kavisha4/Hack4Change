@@ -125,11 +125,17 @@
             method="post"
             enctype="multipart/form-data"
           >
-            <label for="video_file">Upload a video file:</label>
-            <input type="file" id="video_file" name="video_file" /><br /><br />
-            <label for="video_link">Or add a video link:</label>
-            <input type="text" id="video_link" name="video_link" /><br /><br />
-            <button class="btn" type="submit">Submit</button>
+            <div class="div">
+              <label for="video_file">Upload a video file:</label>
+              <input type="file" id="video_file" name="video_file" />
+            </div>
+            <div class="div">
+              <label for="video_link">Or add a video link:</label>
+              <input type="text" id="video_link" name="video_link" />
+            </div>
+            <button style="margin-top: 20px" class="btn" type="submit">
+              Submit
+            </button>
           </form>
         </div>
         <div id="tab-test" class="chat-container tab-content">
@@ -137,8 +143,12 @@
             <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
             <p>Quizzo<span>Buddy</span></p>
           </div>
-          <p>Click on the button below to start taking the test.</p>
-          <a href="/quiz/start_quiz"><button class="btn">Start Quiz</button></a>
+          <div class="div">
+            Click on the button below to start taking the test.
+          </div>
+          <a href="/quiz/start_quiz"
+            ><button style="margin-top: 20px" class="btn">Start Quiz</button></a
+          >
         </div>
       </div>
     </div>

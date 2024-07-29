@@ -14,11 +14,21 @@
     <div class="main-container">
       <div class="sidebar">
         <p class="heading">Options</p>
-        <div class="sidebar-option">Home</div>
-        <div class="sidebar-option">Dashboard</div>
+        <div class="sidebar-option" onclick="showTab(this, 'tab-chatbot')">
+          Chatbot
+        </div>
+        <div class="sidebar-option" onclick="showTab(this, 'tab-analysis')">
+          Analysis
+        </div>
+        <div class="sidebar-option" onclick="showTab(this, 'tab-translator')">
+          Translator
+        </div>
+        <div class="sidebar-option" onclick="showTab(this, 'tab-test')">
+          Test
+        </div>
       </div>
       <div class="container">
-        <div class="chat-container">
+        <div id="tab-chatbot" class="chat-container tab-content">
           <div class="chat-title">
             <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
             <p>Lingo<span>Buddy</span></p>
@@ -69,6 +79,46 @@
             <button id="end-btn">End Conversation</button>
           </div>
         </div>
+        <div id="tab-analysis" class="tab-content">
+          <h2>Analysis</h2>
+          <form action="/quiz/analysis" method="post">
+            <div class="form-group">
+              <label for="subject">Select a subject:</label>
+              <select id="subject" name="subject" required>
+                {% for subject in subjects %}
+                <option value="{{ subject }}">{{ subject }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="skill_level">Select your skill level:</label>
+              <select id="skill_level" name="skill_level" required>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+            <button type="submit">Show Recommendations</button>
+          </form>
+        </div>
+        <div id="tab-translator" class="tab-content">
+          <h2>Translator</h2>
+          <form
+            action="/quiz/translator"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <label for="video_file">Upload a video file:</label>
+            <input type="file" id="video_file" name="video_file" /><br /><br />
+            <label for="video_link">Or add a video link:</label>
+            <input type="text" id="video_link" name="video_link" /><br /><br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div id="tab-test" class="tab-content">
+          <h2>Test</h2>
+          <a href="/quiz/start_quiz">Start Quiz</a>
+        </div>
       </div>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
@@ -89,6 +139,36 @@
             this.value = input.charAt(0).toUpperCase() + input.slice(1);
           }
         });
+
+      function showTab(element, tabId) {
+        var sidebarOption = document.getElementsByClassName("sidebar-option");
+        for (var i = 0; i < sidebarOption.length; i++) {
+          sidebarOption[i].classList.remove("active-state");
+        }
+        element.classList.add("active-state");
+
+        var tabs = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].classList.remove("active-tab");
+        }
+        document.getElementById(tabId).classList.add("active-tab");
+      }
+
+      showTab(
+        document.getElementsByClassName("sidebar-option")[0],
+        "tab-chatbot"
+      );
     </script>
+    <style>
+      .tab-content {
+        display: none;
+      }
+      .active-tab {
+        display: block;
+      }
+      .active-state {
+        background-color: rgb(123, 233, 255);
+      }
+    </style>
   </body>
 </html>

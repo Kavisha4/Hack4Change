@@ -84,36 +84,43 @@
             <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
             <p>Analysis<span>Buddy</span></p>
           </div>
-          <form action="/quiz/analysis" method="post">
-            <div class="div">
-              <div class="form-group">
-                <label for="subject">Select a subject:</label>
-                <select class="select" id="subject" name="subject" required>
-                  {% for subject in subjects %}
-                  <option value="{{ subject }}">{{ subject }}</option>
-                  {% endfor %}
-                </select>
-              </div>
+          <div class="div">
+            <div class="form-group">
+              <label for="subject">Select a subject:</label>
+              <select class="select" id="subject" name="subject" required>
+                {% for subject in subjects %}
+                <option value="{{ subject }}">{{ subject }}</option>
+                {% endfor %}
+              </select>
             </div>
-            <div class="div">
-              <div class="form-group">
-                <label for="skill_level">Select your skill level:</label>
-                <select
-                  class="select"
-                  id="skill_level"
-                  name="skill_level"
-                  required
-                >
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                  <option value="Advanced">Advanced</option>
-                </select>
-              </div>
+          </div>
+          <div class="div">
+            <div class="form-group">
+              <label for="skill_level">Select your skill level:</label>
+              <select
+                class="select"
+                id="skill_level"
+                name="skill_level"
+                required
+              >
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
             </div>
-            <button style="margin-top: 20px" class="btn" type="submit">
-              Show Recommendations
-            </button>
-          </form>
+          </div>
+          <button
+            onclick="get_analysis()"
+            style="margin-top: 20px"
+            class="btn"
+            type="submit"
+          >
+            Show Recommendations
+          </button>
+          <div class="div-recommended-contents">
+            <p><b>Recommendations:</b></p>
+            <div id="list-recommendations"></div>
+          </div>
         </div>
         <div id="tab-translator" class="chat-container tab-content">
           <div class="chat-title">
@@ -189,6 +196,29 @@
         document.getElementsByClassName("sidebar-option")[0],
         "tab-chatbot"
       );
+    </script>
+    <script>
+      function get_analysis() {
+        const params = new URLSearchParams({
+          subject: document.getElementById("subject").value,
+          skill_level: document.getElementById("skill_level").value,
+        });
+
+        fetch(`/get_analysis?${params.toString()}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            let text = "";
+            data.recommended_content.forEach((item) => {
+              text = text + item + "<br />";
+            });
+            document.getElementById("list-recommendations").innerHTML = text;
+          });
+      }
     </script>
     <style>
       .tab-content {

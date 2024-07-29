@@ -286,11 +286,11 @@ def result():
     score = session.get('score', 0)
     return render_template('quiz/result.html', score=score, total=len(questions))
 
-@app.route('/quiz/analysis', methods=['GET', 'POST'])
+@app.route('/get_analysis', methods=['GET', 'POST'])
 def analysis():
-    if request.method == 'POST':
-        subject = request.form.get('subject')
-        skill_level = request.form.get('skill_level')
+    if request.method == 'GET':
+        subject = request.args['subject']
+        skill_level = request.args['skill_level']
         recommended_content = recommendations.get(subject, {}).get(skill_level, [])
-        return render_template('quiz/analysis.html', subjects=recommendations.keys(), recommended_content=recommended_content, selected_subject=subject, selected_skill_level=skill_level)
-    return render_template('quiz/analysis.html', subjects=recommendations.keys())
+        return jsonify({"recommended_content": recommended_content, "selected_subject": subject, "selected_skill_level":skill_level})
+    return jsonify({"response": recommendations.keys()})

@@ -115,9 +115,13 @@
             <button type="submit">Submit</button>
           </form>
         </div>
-        <div id="tab-test" class="tab-content">
-          <h2>Test</h2>
-          <a href="/quiz/start_quiz">Start Quiz</a>
+        <div id="tab-test" class="chat-container tab-content">
+          <div class="chat-title">
+            <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
+            <p>Quizzo<span>Buddy</span></p>
+          </div>
+          <p>Click on the button below to start taking the test.</p>
+          <a href="/quiz/start_quiz"><button class="btn">Start Quiz</button></a>
         </div>
       </div>
     </div>

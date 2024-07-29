@@ -54,6 +54,8 @@ body {
 }
 
 .heading {
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 30px;
   font-weight: bold;
 }
@@ -83,10 +85,11 @@ body {
 
 .chat-container {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: calc(80% - 40px);
   margin-left: 10%;
+  margin-top: 10px;
   padding: 20px;
 }
 
@@ -309,4 +312,15 @@ body {
 #end-btn {
   background-color: #ff4b4b;
   color: white;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background: linear-gradient(to right, dodgerblue 0%, deepskyblue 100%);
+  color: white;
+  padding: 10px 20px 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 30px;
 }

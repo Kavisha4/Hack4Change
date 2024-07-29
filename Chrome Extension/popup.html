@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vernacular Video Learning</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>Vernacular Video Learning</h1>
+  <label for="language">Select Language:</label>
+  <select id="language">
+    <option value="hi">Hindi</option>
+    <option value="ta">Tamil</option>
+    <option value="te">Telugu</option>
+    <!-- Add more languages as needed -->
+  </select>
+  <input type="file" id="audio-file" accept="audio/*">
+  <button id="translate">Translate Audio</button>
+  <div id="translated-text"></div>
+  <input type="text" id="chat-input" placeholder="Ask something...">
+  <button id="send-chat">Send</button>
+  <div id="chat-response"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

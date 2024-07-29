@@ -323,4 +323,11 @@ body {
   font-size: 14px;
   font-weight: bold;
   border-radius: 30px;
+  box-shadow: 2px 2px 3px rgb(198, 198, 198);
+  transition: 0.3s ease all;
+}
+
+.btn:hover {
+  transform: scale(0.9);
+  transition: 0.3s ease all;
 }

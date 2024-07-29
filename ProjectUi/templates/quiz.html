@@ -25,7 +25,7 @@
     <div class="content">
         <h2>Question {{ question_index + 1 }}</h2>
         <div class="question">{{ question['question'] }}</div>
-        <form action="/quiz" method="post">
+        <form action="/quiz/quiz" method="post">
             <ul class="options">
                 {% for option in question['options'] %}
                 <li>

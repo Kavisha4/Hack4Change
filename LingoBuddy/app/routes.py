@@ -30,9 +30,46 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+# Quiz
+questions = [
+    {
+        'question': 'What is the capital of France?',
+        'options': ['Paris', 'London', 'Berlin', 'Madrid'],
+        'answer': 'Paris'
+    },
+    {
+        'question': 'Which planet is known as the Red Planet?',
+        'options': ['Earth', 'Mars', 'Jupiter', 'Saturn'],
+        'answer': 'Mars'
+    },
+    {
+        'question': 'Who wrote "To Kill a Mockingbird"?',
+        'options': ['Harper Lee', 'Mark Twain', 'Ernest Hemingway', 'F. Scott Fitzgerald'],
+        'answer': 'Harper Lee'
+    }
+]
+
+recommendations = {
+    'Python': {
+        'Beginner': ['Introduction to Python', 'Python for Beginners'],
+        'Intermediate': ['Intermediate Python', 'Python Data Structures'],
+        'Advanced': ['Advanced Python Programming', 'Python Machine Learning']
+    },
+    'JavaScript': {
+        'Beginner': ['JavaScript Basics', 'JavaScript for Beginners'],
+        'Intermediate': ['Intermediate JavaScript', 'JavaScript and DOM'],
+        'Advanced': ['Advanced JavaScript', 'JavaScript Frameworks']
+    },
+    'Data Structures': {
+        'Beginner': ['Introduction to Data Structures', 'Basic Data Structures'],
+        'Intermediate': ['Intermediate Data Structures', 'Data Structures in Practice'],
+        'Advanced': ['Advanced Data Structures', 'Data Structures and Algorithms']
+    }
+}
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", subjects=recommendations.keys())
 
 @app.route("/translation")
 def translation():
@@ -212,43 +249,6 @@ def video_translation():
     return jsonify({
         'translated_text': translated_text
     }) 
-
-# Quiz
-questions = [
-    {
-        'question': 'What is the capital of France?',
-        'options': ['Paris', 'London', 'Berlin', 'Madrid'],
-        'answer': 'Paris'
-    },
-    {
-        'question': 'Which planet is known as the Red Planet?',
-        'options': ['Earth', 'Mars', 'Jupiter', 'Saturn'],
-        'answer': 'Mars'
-    },
-    {
-        'question': 'Who wrote "To Kill a Mockingbird"?',
-        'options': ['Harper Lee', 'Mark Twain', 'Ernest Hemingway', 'F. Scott Fitzgerald'],
-        'answer': 'Harper Lee'
-    }
-]
-
-recommendations = {
-    'Python': {
-        'Beginner': ['Introduction to Python', 'Python for Beginners'],
-        'Intermediate': ['Intermediate Python', 'Python Data Structures'],
-        'Advanced': ['Advanced Python Programming', 'Python Machine Learning']
-    },
-    'JavaScript': {
-        'Beginner': ['JavaScript Basics', 'JavaScript for Beginners'],
-        'Intermediate': ['Intermediate JavaScript', 'JavaScript and DOM'],
-        'Advanced': ['Advanced JavaScript', 'JavaScript Frameworks']
-    },
-    'Data Structures': {
-        'Beginner': ['Introduction to Data Structures', 'Basic Data Structures'],
-        'Intermediate': ['Intermediate Data Structures', 'Data Structures in Practice'],
-        'Advanced': ['Advanced Data Structures', 'Data Structures and Algorithms']
-    }
-}
 
 @app.route('/quiz')
 def home():

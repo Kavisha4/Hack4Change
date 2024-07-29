@@ -13,7 +13,12 @@ select {
 }
 
 body {
-  background-color: #f4f4f9;
+  /* background-color: #f4f4f9; */
+  background: linear-gradient(
+    to right,
+    rgb(205, 241, 255) 0%,
+    rgb(219, 246, 255) 100%
+  );
   display: flex;
   margin: 0;
 }
@@ -50,7 +55,7 @@ body {
   padding: 20px;
   margin: 10px;
   height: calc(100vh - 130px);
-  background-color: white;
+  background: linear-gradient(180deg, rgb(193, 240, 255) 0%, white 100%);
   border-radius: 10px;
   box-shadow: 2px 3px 5px rgb(228, 228, 228);
 }
@@ -90,8 +95,8 @@ body {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: calc(80% - 40px);
-  margin-left: 10%;
+  width: calc(99% - 40px);
+  margin-left: 0;
   margin-top: 10px;
   padding: 20px;
 }

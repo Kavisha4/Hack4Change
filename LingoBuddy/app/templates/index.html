@@ -79,8 +79,11 @@
             <button id="end-btn">End Conversation</button>
           </div>
         </div>
-        <div id="tab-analysis" class="tab-content">
-          <h2>Analysis</h2>
+        <div id="tab-analysis" class="chat-container tab-content">
+          <div class="chat-title">
+            <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
+            <p>Analysis<span>Buddy</span></p>
+          </div>
           <form action="/quiz/analysis" method="post">
             <div class="form-group">
               <label for="subject">Select a subject:</label>
@@ -101,8 +104,11 @@
             <button type="submit">Show Recommendations</button>
           </form>
         </div>
-        <div id="tab-translator" class="tab-content">
-          <h2>Translator</h2>
+        <div id="tab-translator" class="chat-container tab-content">
+          <div class="chat-title">
+            <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
+            <p>Trans<span>lator</span></p>
+          </div>
           <form
             action="/quiz/translator"
             method="post"

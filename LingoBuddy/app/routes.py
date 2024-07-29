@@ -1,17 +1,23 @@
-from flask import current_app as app, render_template, request, jsonify
+from flask import current_app as app, render_template, request, jsonify, send_file, url_for, send_from_directory
 import requests
 import os
 import json
 from deep_translator import GoogleTranslator
 from werkzeug.utils import secure_filename
 import PyPDF2
-import yt_dlp
-import io
 import chromadb
+from audio_translation import (
+    download_youtube_video, extract_audio_from_video, transcribe_audio,
+    translate_text_to_tamil, generate_tamil_audio, overlay_audio_on_video,
+    save_transcriptions_to_txt, clear_folders
+)
+import time
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf'}
 local_embeddings = []
+VIDEO_DIR = '../../translated_video'
+TRANSCRIPTION_TXT_DIR = '../../transcription'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 chroma_client = chromadb.Client()
@@ -163,70 +169,49 @@ def get_response():
     translated_response = GoogleTranslator(source='en', target='ta').translate(api_response)
     return jsonify({"response": translated_response})
 
-def get_youtube_audio_stream(youtube_url):
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'quiet': True,
-        'outtmpl': '-',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-    }
-    audio_data = io.BytesIO()
-    print("Processing")
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        result = ydl.extract_info(youtube_url, download=False)
-        audio_stream_url = result['url']
-        response = requests.get(audio_stream_url, stream=True)
-        for chunk in response.iter_content(chunk_size=1024):
-            if chunk:
-                audio_data.write(chunk)
-    audio_data.seek(0)
-    print("Done")
-    return audio_data
+@app.route('/video_translation', methods=['POST'])
+def video_translation():
+    youtube_url = request.form['youtube_url']
+    
+    # Define paths
+    video_path = 'app/static/videos/source_video/video.mp4'
+    audio_path = 'app/static/audio/audio.wav'
+    tamil_audio_path = 'app/static/translated_audio/tamil_audio.mp3'
+    final_video_path = 'app/static/videos/translated_video/translated_video.mp4'
+    transcription_txt_path = 'app/static/transcription/transcription.txt'
+    
+    # Ensure directories exist
+    os.makedirs(os.path.dirname(video_path), exist_ok=True)
+    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
+    os.makedirs(os.path.dirname(tamil_audio_path), exist_ok=True)
+    os.makedirs(os.path.dirname(final_video_path), exist_ok=True)
+    os.makedirs(os.path.dirname(transcription_txt_path), exist_ok=True)
+    
+    # Processing
+    download_youtube_video(youtube_url, video_path)
+    extract_audio_from_video(video_path, audio_path)
+    
+    transcription = transcribe_audio(audio_path)
+    translated_text = translate_text_to_tamil(transcription)
+    generate_tamil_audio(translated_text, tamil_audio_path)
+    
+    save_transcriptions_to_txt(transcription, translated_text, transcription_txt_path)
+    
+    overlay_audio_on_video(video_path, tamil_audio_path, final_video_path)
+    
+    # Delay to ensure all processes are completed
+    time.sleep(2)
+    
+    # Clear folders
+    clear_folders([
+        'app/static/videos/source_video',
+        'app/static/audio',
+        'app/static/translated_audio'
+    ])
+    
+    return jsonify({
+        'translated_text': translated_text
+    }) 
 
-def save_audio_to_file(audio_data, filename, folder='audio'):
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-    filepath = os.path.join(folder, filename)
-    with open(filepath, 'wb') as f:
-        f.write(audio_data.read())
-    return filepath
 
-@app.route('/upload_audio', methods=['POST'])
-def upload_audio():
-    data = request.get_json()
-    youtube_url = data.get('youtube_url')
-    if not youtube_url:
-        return jsonify({'error': 'No YouTube URL provided'}), 400
-
-    try:
-        audio_data = get_youtube_audio_stream(youtube_url)
-        audio_filename = "extracted_audio.mp3"
-        saved_filepath = save_audio_to_file(audio_data, audio_filename)
-
-        files = {
-            'file': (audio_filename, open(saved_filepath, 'rb'), 'audio/mpeg')
-        }
-        payload = {
-            'model': 'whisper-v3',
-            'prompt': 'null',
-            'response_format': 'string',
-            'temperature': 0.5
-        }
-        headers = {
-            "Authorization": "Bearer YyPiJjsgNkGJRrg7JNjT6mBGAft8mQyAGoXG87YVk2Y6qo7A"
-        }
-        url = "https://api.fireworks.ai/inference/v1/audio/translations"
-        response = requests.post(url, files=files, data=payload, headers=headers)
-        response_data = response.json()
-
-        print("Response Status Code:", response.status_code)
-        print("Response Data:", json.dumps(response_data, indent=2))
-
-        return jsonify({"response": response_data}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
 

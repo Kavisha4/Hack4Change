@@ -62,48 +62,4 @@ def clear_folders(folders):
         if os.path.exists(folder):
             shutil.rmtree(folder)
 
-def main(youtube_url):
-    
-    video_path = 'source_video/video.mp4'
-    audio_path = 'audio/audio.wav'
-    tamil_audio_path = 'translated_audio/tamil_audio.mp3'
-    final_video_path = 'translated_video/translated_video.mp4'
-    transcription_txt_path = 'transcription/transcription.txt'
-
-    
-    os.makedirs(os.path.dirname(video_path), exist_ok=True)
-    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
-    os.makedirs(os.path.dirname(tamil_audio_path), exist_ok=True)
-    os.makedirs(os.path.dirname(final_video_path), exist_ok=True)
-    os.makedirs(os.path.dirname(transcription_txt_path), exist_ok=True)
-
-    
-    download_youtube_video(youtube_url, video_path)
-    extract_audio_from_video(video_path, audio_path)
-
-    
-    transcription = transcribe_audio(audio_path)
-    print(f"Transcription: {transcription}")
-
-    translated_text = translate_text_to_tamil(transcription)
-    print(f"Translated Text: {translated_text}")
-    save_transcriptions_to_txt(transcription, translated_text, transcription_txt_path)
-
-    generate_tamil_audio(translated_text, tamil_audio_path)
-
-    
-    overlay_audio_on_video(video_path, tamil_audio_path, final_video_path)
-    print(f"Translation and overlay complete. Output saved as '{final_video_path}'.")
-
-    
-    time.sleep(2) 
-
-    
-    clear_folders([
-        'source_video',
-        'audio',
-        'translated_audio'
-    ])
-
 youtube_url = "https://www.youtube.com/watch?v=Sn-jsiJOKA8&t=4s"  
-main(youtube_url)

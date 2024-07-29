@@ -12,24 +12,31 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/translation.css') }}"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <div class="header"><p>lingoBuddy</p></div>
     <div class="main-container">
       <div class="sidebar">
-        <p class="heading">Options</p>
+        <p class="heading">What you want to do?</p>
         <div class="sidebar-option" onclick="showTab(this, 'tab-chatbot')">
-          Chatbot
+          <i class="fa fa-comment" style="font-size: 20px"></i
+          >&nbsp;&nbsp;Chatbot
         </div>
         <div class="sidebar-option" onclick="showTab(this, 'tab-analysis')">
-          Analysis
+          <i class="fa fa-search" style="font-size: 20px"></i
+          >&nbsp;&nbsp;Analysis
         </div>
         <div class="sidebar-option" onclick="showTab(this, 'tab-translator')">
-          Video Translation
+          <i class="fa fa-film" style="font-size: 20px"></i>&nbsp;&nbsp;Video
+          Translation
         </div>
         <div class="sidebar-option" onclick="showTab(this, 'tab-test')">
-          Test
+          <i class="fa fa-bookmark" style="font-size: 20px"></i>&nbsp;&nbsp;Quiz
         </div>
       </div>
       <div class="container">
@@ -276,7 +283,8 @@
         display: block;
       }
       .active-state {
-        background-color: rgb(123, 233, 255);
+        background: linear-gradient(to right, dodgerblue 0%, deepskyblue 100%);
+        color: white;
       }
     </style>
   </body>

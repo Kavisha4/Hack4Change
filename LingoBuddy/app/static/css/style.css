@@ -60,6 +60,7 @@ body {
   margin-bottom: 20px;
   font-size: 30px;
   font-weight: bold;
+  color: rgb(106, 106, 106);
 }
 
 .sidebar-option {
@@ -68,15 +69,15 @@ body {
   margin-right: 10px;
   font-size: 16px;
   border: 1px solid rgb(198, 198, 198);
-  border-radius: 30px;
-  box-shadow: 2px 2px 3px rgb(198, 198, 198);
+  border-radius: 5px 30px 30px 15px;
+  box-shadow: 1px 1px 2px rgb(198, 198, 198);
   padding: 15px;
   font-weight: 600;
   transition: 0.3s all ease;
 }
 
 .sidebar-option:hover {
-  transform: scale(0.9);
+  transform: scale(0.95);
   transition: 0.3s all ease;
 }
 

@@ -13,7 +13,12 @@ select {
 }
 
 body {
-  background-color: #f4f4f9;
+  /* background-color: #f4f4f9; */
+  background: linear-gradient(
+    to right,
+    rgb(205, 241, 255) 0%,
+    rgb(219, 246, 255) 100%
+  );
   display: flex;
   margin: 0;
 }
@@ -50,9 +55,8 @@ body {
   padding: 20px;
   margin: 10px;
   height: calc(100vh - 130px);
-  background-color: white;
+  background: linear-gradient(180deg, rgb(193, 240, 255) 0%, white 100%);
   border-radius: 10px;
-  box-shadow: 2px 3px 5px rgb(228, 228, 228);
 }
 
 .heading {
@@ -60,6 +64,7 @@ body {
   margin-bottom: 20px;
   font-size: 30px;
   font-weight: bold;
+  color: rgb(106, 106, 106);
 }
 
 .sidebar-option {
@@ -68,15 +73,15 @@ body {
   margin-right: 10px;
   font-size: 16px;
   border: 1px solid rgb(198, 198, 198);
-  border-radius: 30px;
-  box-shadow: 2px 2px 3px rgb(198, 198, 198);
+  border-radius: 5px 30px 30px 15px;
+  box-shadow: 1px 1px 2px rgb(198, 198, 198);
   padding: 15px;
   font-weight: 600;
   transition: 0.3s all ease;
 }
 
 .sidebar-option:hover {
-  transform: scale(0.9);
+  transform: scale(0.95);
   transition: 0.3s all ease;
 }
 
@@ -89,8 +94,8 @@ body {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: calc(80% - 40px);
-  margin-left: 10%;
+  width: calc(99% - 40px);
+  margin-left: 0;
   margin-top: 10px;
   padding: 20px;
 }
@@ -225,6 +230,7 @@ body {
 }
 
 .message {
+  max-width: 60%;
   display: inline-block;
   padding: 10px;
   margin-bottom: 10px;
@@ -314,6 +320,21 @@ body {
 #end-btn {
   background-color: #ff4b4b;
   color: white;
+}
+
+.input {
+  outline: none;
+  width: 60%;
+  height: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(122, 122, 122);
+}
+
+.input:focus {
+  border-color: dodgerblue;
 }
 
 .select {

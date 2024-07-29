@@ -143,11 +143,22 @@
             <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
             <p>Trans<span>lator</span></p>
           </div>
-          <h1>Video Translation</h1>
           <form id="translation-form" action="/video_translation" method="post">
             <label for="youtube_url">YouTube URL:</label>
-            <input type="text" id="youtube_url" name="youtube_url" required />
-            <button type="submit">Translate</button>
+            <input
+              class="input"
+              type="text"
+              id="youtube_url"
+              name="youtube_url"
+              required
+            />
+            <button
+              style="margin-left: 10px; display: inline"
+              class="btn"
+              type="submit"
+            >
+              Translate
+            </button>
           </form>
           <div id="progress" style="display: none">
             <p>Processing...</p>

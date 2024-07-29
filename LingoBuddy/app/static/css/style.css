@@ -322,6 +322,21 @@ body {
   color: white;
 }
 
+.input {
+  outline: none;
+  width: 60%;
+  height: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(122, 122, 122);
+}
+
+.input:focus {
+  border-color: dodgerblue;
+}
+
 .select {
   border: 2px solid rgb(202, 202, 202);
   outline: none;

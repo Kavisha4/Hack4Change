@@ -284,7 +284,7 @@ def quiz():
 @app.route('/quiz/result')
 def result():
     score = session.get('score', 0)
-    return render_template('result.html', score=score, total=len(questions))
+    return render_template('quiz/result.html', score=score, total=len(questions))
 
 @app.route('/quiz/analysis', methods=['GET', 'POST'])
 def analysis():
@@ -292,5 +292,5 @@ def analysis():
         subject = request.form.get('subject')
         skill_level = request.form.get('skill_level')
         recommended_content = recommendations.get(subject, {}).get(skill_level, [])
-        return render_template('analysis.html', subjects=recommendations.keys(), recommended_content=recommended_content, selected_subject=subject, selected_skill_level=skill_level)
-    return render_template('analysis.html', subjects=recommendations.keys())
+        return render_template('quiz/analysis.html', subjects=recommendations.keys(), recommended_content=recommended_content, selected_subject=subject, selected_skill_level=skill_level)
+    return render_template('quiz/analysis.html', subjects=recommendations.keys())

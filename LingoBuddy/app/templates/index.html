@@ -10,51 +10,58 @@
     />
   </head>
   <body>
-    <div class="chat-container">
-      <div class="chat-title">
-        <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
-        <p>Lingo<span>Buddy</span></p>
-      </div>
-      <div class="chat-options">
-        <div class="chat-upload-document">
-          <div class="file-upload-wrapper">
-            <input
-              type="file"
-              class="file-upload-input"
-              id="file-input"
-              accept=".pdf"
-            />
-            <button class="file-upload-button">Choose PDF File</button>
+    <div class="sidebar">Sidebar</div>
+    <div class="container">
+      <div class="chat-container">
+        <div class="chat-title">
+          <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
+          <p>Lingo<span>Buddy</span></p>
+        </div>
+        <div class="chat-options">
+          <div class="chat-upload-document">
+            <div class="file-upload-wrapper">
+              <input
+                type="file"
+                class="file-upload-input"
+                id="file-input"
+                accept=".pdf"
+              />
+              <button class="file-upload-button">Choose PDF File</button>
+            </div>
+            <p class="file-name" id="file-name">No file chosen</p>
+            <button id="upload-btn">Upload</button>
+            <div id="upload-status"></div>
           </div>
-          <p class="file-name" id="file-name">No file chosen</p>
-          <button id="upload-btn">Upload</button>
-          <div id="upload-status"></div>
+          <div class="chat-select-language">
+            <p>Select Language:</p>
+            <select>
+              <option>English</option>
+              <option>Tamil</option>
+              <option>Telugu</option>
+            </select>
+          </div>
         </div>
-        <div class="chat-select-language">
-          <p>Select Language:</p>
-          <select>
-            <option>English</option>
-            <option>Tamil</option>
-            <option>Telugu</option>
-          </select>
+        <div class="chat-box" id="chat-box">
+          <div class="chat-icon-div chat-icon-div-bot">
+            <img
+              class="bot-img"
+              src="{{ url_for('static', filename='images/bot.png') }}"
+            />
+            <p class="chat-name chat-name-bot">LingoBuddy</p>
+          </div>
+          <div class="message bot">
+            Welcome to LingoBuddy! How can I assist you today?
+          </div>
         </div>
-      </div>
-      <div class="chat-box" id="chat-box">
-        <div class="chat-icon-div chat-icon-div-bot">
-          <img
-            class="bot-img"
-            src="{{ url_for('static', filename='images/bot.png') }}"
+        <div class="input-area">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Type your message..."
           />
-          <p class="chat-name chat-name-bot">LingoBuddy</p>
+          <button id="send-btn">Send</button>
+          <button id="end-btn">End Conversation</button>
         </div>
-        <div class="message bot">
-          Welcome to LingoBuddy! How can I assist you today?
-        </div>
-      </div>
-      <div class="input-area">
-        <input type="text" id="user-input" placeholder="Type your message..." />
-        <button id="send-btn">Send</button>
-        <button id="end-btn">End Conversation</button>
       </div>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

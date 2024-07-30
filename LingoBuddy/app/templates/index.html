@@ -164,10 +164,10 @@
           <form id="translation-form" action="/video_translation" method="post">
             <div class="chat-select-language">
               <p>Select Language:</p>
-              <select>
-                <option>Tamil</option>
-                <option>Hindi</option>
-                <option>Telugu</option>
+              <select id="select-language-translation">
+                <option value="tamil">Tamil</option>
+                <option value="hindi">Hindi</option>
+                <option value="telugu">Telugu</option>
               </select>
             </div>
             <br />
@@ -302,6 +302,7 @@
           event.preventDefault();
           $("#progress").show();
           $(".progress").css("width", "0%");
+          const language = $("#select-language-translation").val();
           const youtube_url = $("#youtube_url").val();
 
           // Start progress bar animation
@@ -313,7 +314,10 @@
             }
           }, 500);
 
-          $.post("/video_translation", { youtube_url: youtube_url })
+          $.post("/video_translation", {
+            youtube_url: youtube_url,
+            language: language,
+          })
             .done(function () {
               $("#progress").hide();
               $("#result").show();

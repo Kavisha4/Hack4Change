@@ -258,28 +258,25 @@ def home():
 def start_quiz():
     session['question_index'] = 0
     session['score'] = 0
-    return redirect(url_for('quiz'))
+    return jsonify({'status': 'success', 'question': questions[0]})
 
-@app.route('/quiz/quiz', methods=['GET', 'POST'])
+@app.route('/quiz/quiz', methods=['POST'])
 def quiz():
     question_index = session.get('question_index', 0)
     score = session.get('score', 0)
 
-    if request.method == 'POST':
-        selected_option = request.form.get('option')
-        if selected_option == questions[question_index]['answer']:
-            session['score'] = score + 1
-        session['question_index'] = question_index + 1
-        if question_index + 1 >= len(questions):
-            return redirect(url_for('result'))
-        else:
-            return redirect(url_for('quiz'))
+    data = request.json
+    selected_option = data.get('option')
 
-    if question_index >= len(questions):
-        return redirect(url_for('result'))
+    if selected_option == questions[question_index]['answer']:
+        session['score'] = score + 1
 
-    question = questions[question_index]
-    return render_template('quiz/quiz.html', question=question, question_index=question_index)
+    session['question_index'] = question_index + 1
+
+    if question_index + 1 >= len(questions):
+        return jsonify({'status': 'completed', 'score': session.get('score', 0), 'total': len(questions)})
+    else:
+        return jsonify({'status': 'next', 'question': questions[question_index + 1]})
 
 @app.route('/quiz/result')
 def result():

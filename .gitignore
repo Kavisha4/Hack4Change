@@ -1,2 +1,4 @@
 __pycache__/
 venv/
+LingoBuddy/__pycache__
+LingoBuddy/app/__pycache__

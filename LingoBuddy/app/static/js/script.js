@@ -1,4 +1,5 @@
 document.getElementById("send-btn").addEventListener("click", function () {
+  const language = document.getElementById("select-language-chatbot").value;
   const userInput = document.getElementById("user-input").value;
   if (userInput.trim()) {
     addMessage("user", userInput);
@@ -7,7 +8,7 @@ document.getElementById("send-btn").addEventListener("click", function () {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message: userInput }),
+      body: JSON.stringify({ message: userInput, language: language }),
     })
       .then((response) => response.json())
       .then((data) => addMessage("bot", data.response));

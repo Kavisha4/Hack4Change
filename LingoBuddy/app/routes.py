@@ -162,9 +162,16 @@ def get_response():
     user_input = request.json.get("message")
     language=request.json.get("language")
     language_codes = {
-        'hindi': 'hi',
-        'tamil': 'ta',
-        'telugu': 'te'
+    'hindi': 'hi',
+    'tamil': 'ta',
+    'telugu': 'te',
+    'assamese': 'as',
+    'gujarati': 'gu',
+    'bengali': 'bn',
+    'kannada': 'kn',
+    'malayalam': 'ml',
+    'marathi': 'mr',
+    'nepali': 'ne'
     }
     translated_input = GoogleTranslator(source=language_codes[language], target='en').translate(user_input)
     relevant_docs = []  
@@ -216,9 +223,16 @@ def video_translation():
     youtube_url = request.form['youtube_url']
     language=request.form["language"]
     language_codes = {
-        'hindi': 'hi',
-        'tamil': 'ta',
-        'telugu': 'te'
+    'hindi': 'hi',
+    'tamil': 'ta',
+    'telugu': 'te',
+    'assamese': 'as',
+    'gujarati': 'gu',
+    'bengali': 'bn',
+    'kannada': 'kn',
+    'malayalam': 'ml',
+    'marathi': 'mr',
+    'nepali': 'ne'
     }
     
     # Define paths

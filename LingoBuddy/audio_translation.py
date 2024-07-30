@@ -53,7 +53,7 @@ def save_transcriptions_to_txt(original_transcription, translated_transcription,
         f.write("Original Transcription:\n")
         wrapped_text = textwrap.fill(original_transcription, width=80)
         f.write(wrapped_text + "\n\n")
-        f.write("Translated Transcription (Tamil):\n")
+        f.write("Translated Transcription:\n")
         wrapped_translated_text = textwrap.fill(translated_transcription, width=80)
         f.write(wrapped_translated_text + "\n")
 

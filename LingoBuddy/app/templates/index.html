@@ -208,9 +208,15 @@
               <option>Telugu</option>
             </select>
           </div>
-          <a href="/quiz/start_quiz"
-            ><button style="margin-top: 20px" class="btn">Start Quiz</button></a
-          >
+          <div id="quiz-container">
+            <button style="margin-top: 20px" class="btn" id="start-quiz-btn">
+              Start Quiz
+            </button>
+            <div id="quiz-section" style="display: none">
+              <div id="question-container"></div>
+              <div id="options-container"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -305,6 +311,71 @@
             });
         });
       });
+    </script>
+    <script>
+      document
+        .getElementById("start-quiz-btn")
+        .addEventListener("click", function () {
+          fetch("/quiz/start_quiz")
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.status === "success") {
+                document.getElementById("start-quiz-btn").style.display =
+                  "none";
+                document.getElementById("quiz-section").style.display = "block";
+                loadQuestion(data.question);
+              }
+            });
+        });
+
+      function loadQuestion(question) {
+        var questionContainer = document.getElementById("question-container");
+        var optionsContainer = document.getElementById("options-container");
+
+        questionContainer.innerHTML = `<h3>${question.question}</h3>`;
+        optionsContainer.innerHTML = "";
+
+        question.options.forEach((option) => {
+          var optionElement = document.createElement("div");
+          optionElement.innerHTML = `<input type="radio" name="option" value="${option}"> ${option}<br>`;
+          optionsContainer.appendChild(optionElement);
+        });
+
+        var submitButton = document.createElement("button");
+        submitButton.textContent = "Submit";
+        submitButton.addEventListener("click", function () {
+          var selectedOption = document.querySelector(
+            'input[name="option"]:checked'
+          );
+          if (selectedOption) {
+            submitAnswer(selectedOption.value);
+          } else {
+            alert("Please select an option.");
+          }
+        });
+        optionsContainer.appendChild(submitButton);
+      }
+
+      function submitAnswer(option) {
+        fetch("/quiz/quiz", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ option: option }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "next") {
+              loadQuestion(data.question);
+            } else if (data.status === "completed") {
+              document.getElementById(
+                "question-container"
+              ).innerHTML = `<h3>Quiz Completed!</h3><p>Your score: ${data.score} / ${data.total}</p>`;
+              document.getElementById("options-container").innerHTML = "";
+            }
+          });
+      }
     </script>
     <style>
       .tab-content {

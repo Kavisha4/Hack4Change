@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{{ url_for('static', filename='images/favicon-32x32.png') }}" type="image/png">
-    <title>LingoBuddy</title>
+    <title>skill.io</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
@@ -69,8 +69,8 @@
             <div class="chat-select-language">
               <p>Select Language:</p>
               <select>
-                <option>English</option>
                 <option>Tamil</option>
+                <option>Hindi</option>
                 <option>Telugu</option>
               </select>
             </div>
@@ -146,6 +146,15 @@
             <p>Trans<span>lator</span></p>
           </div>
           <form id="translation-form" action="/video_translation" method="post">
+            <div class="chat-select-language">
+              <p>Select Language:</p>
+              <select>
+                <option>Tamil</option>
+                <option>Hindi</option>
+                <option>Telugu</option>
+              </select>
+            </div>
+            <br />
             <label for="youtube_url">YouTube URL:</label>
             <input
               class="input"
@@ -191,8 +200,13 @@
             <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
             <p>Quizzo<span>Buddy</span></p>
           </div>
-          <div class="div">
-            Click on the button below to start taking the test.
+          <div class="chat-select-language">
+            <p>Select Language:</p>
+            <select>
+              <option>Tamil</option>
+              <option>Hindi</option>
+              <option>Telugu</option>
+            </select>
           </div>
           <a href="/quiz/start_quiz"
             ><button style="margin-top: 20px" class="btn">Start Quiz</button></a

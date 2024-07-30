@@ -16,6 +16,13 @@ document.getElementById("send-btn").addEventListener("click", function () {
   }
 });
 
+document.getElementById("end-btn").addEventListener("click", function () {
+  let chatBox = document.getElementById("chat-box");
+  while (chatBox.childNodes.length > 4) {
+    chatBox.removeChild(chatBox.lastChild);
+  }
+});
+
 document.getElementById("upload-btn").addEventListener("click", function () {
   const fileInput = document.getElementById("file-input");
   const file = fileInput.files[0];

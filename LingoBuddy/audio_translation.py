@@ -28,13 +28,13 @@ def transcribe_audio(audio_path):
     transcription = recognizer.recognize_google(audio)
     return transcription
 
-def translate_text_to_tamil(text):
-    translator = GoogleTranslator(source='auto', target='ta')
+def translate_text_to_tamil(text,language):
+    translator = GoogleTranslator(source='auto', target=language)
     translated_text = translator.translate(text)
     return translated_text
 
-def generate_tamil_audio(text, output_path):
-    tts = gTTS(text=text, lang='ta')
+def generate_new_audio(text, output_path,language):
+    tts = gTTS(text=text, lang=language)
     tts.save(output_path)
 
 def overlay_audio_on_video(video_path, audio_path, output_path):

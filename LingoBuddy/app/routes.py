@@ -160,6 +160,7 @@ def get_embeddings():
 @app.route("/get_response", methods=["POST"])
 def get_response():
     user_input = request.json.get("message")
+    print(request.json.get("language"))
     translated_input = GoogleTranslator(source='ta', target='en').translate(user_input)
 
     relevant_docs = []  
@@ -209,6 +210,7 @@ def get_response():
 @app.route('/video_translation', methods=['POST'])
 def video_translation():
     youtube_url = request.form['youtube_url']
+    print(request.form["language"])
     
     # Define paths
     video_path = 'app/static/videos/source_video/video.mp4'

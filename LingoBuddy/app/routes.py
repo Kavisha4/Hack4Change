@@ -220,6 +220,10 @@ def get_response():
 
 @app.route('/video_translation', methods=['POST'])
 def video_translation():
+    clear_folders([
+        'app/static/videos/translated_video',
+        'app/static/transcription'
+    ])
     youtube_url = request.form['youtube_url']
     language=request.form["language"]
     language_codes = {

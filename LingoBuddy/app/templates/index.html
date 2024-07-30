@@ -217,12 +217,27 @@
             </video>
             <h3>Translated Text</h3>
             <p id="translated-text"></p>
-            <a
-              id="download-transcription"
-              href="/static/transcription/transcription.txt"
-              download
-              >Download Transcription</a
-            >
+            <a id="download-transcription" 
+   href="/static/transcription/transcription.txt" 
+   download 
+   style="
+     display: inline-block; 
+     border: none; 
+     background-color: rgb(189, 215, 242); 
+     color: black; 
+     padding: 10px 20px; 
+     border-radius: 30px; 
+     font-weight: 600; 
+     cursor: pointer; 
+     font-size: 14px; 
+     text-align: center; 
+     text-decoration: none; 
+     transition: background-color 0.3s ease;
+   "
+   onmouseover="this.style.backgroundColor='rgb(160, 200, 240)';"
+   onmouseout="this.style.backgroundColor='rgb(189, 215, 242)';">
+  Download Transcription
+</a>
           </div>
         </div>
         <div id="tab-test" class="chat-container tab-content">
@@ -339,6 +354,9 @@
               $("#result").show();
               clearInterval(interval);
               $("#translated-text").text(data.translated_text);
+              const videoElement = $("#translated-video")[0];
+              videoElement.load();
+              videoElement.play();
             })
             .fail(function () {
               alert("An error occurred. Please try again.");

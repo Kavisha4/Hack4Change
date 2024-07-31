@@ -50,8 +50,8 @@
           >&nbsp;&nbsp;Chatbot
         </div>
         <div class="sidebar-option" onclick="showTab(this, 'tab-analysis')">
-          <i class="fa fa-search" style="font-size: 20px"></i
-          >&nbsp;&nbsp;Course Recommendations
+          <i class="fa fa-search" style="font-size: 20px"></i>&nbsp;&nbsp;Course
+          Recommendations
         </div>
         <div class="sidebar-option" onclick="showTab(this, 'tab-translator')">
           <i class="fa fa-film" style="font-size: 20px"></i>&nbsp;&nbsp;Video
@@ -217,27 +217,29 @@
             </video>
             <h3>Translated Text</h3>
             <p id="translated-text"></p>
-            <a id="download-transcription" 
-   href="/static/transcription/transcription.txt" 
-   download 
-   style="
-     display: inline-block; 
-     border: none; 
-     background-color: rgb(189, 215, 242); 
-     color: black; 
-     padding: 10px 20px; 
-     border-radius: 30px; 
-     font-weight: 600; 
-     cursor: pointer; 
-     font-size: 14px; 
-     text-align: center; 
-     text-decoration: none; 
-     transition: background-color 0.3s ease;
-   "
-   onmouseover="this.style.backgroundColor='rgb(160, 200, 240)';"
-   onmouseout="this.style.backgroundColor='rgb(189, 215, 242)';">
-  Download Transcription
-</a>
+            <a
+              id="download-transcription"
+              href="/static/transcription/transcription.txt"
+              download
+              style="
+                display: inline-block;
+                border: none;
+                background-color: rgb(189, 215, 242);
+                color: black;
+                padding: 10px 20px;
+                border-radius: 30px;
+                font-weight: 600;
+                cursor: pointer;
+                font-size: 14px;
+                text-align: center;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+              "
+              onmouseover="this.style.backgroundColor='rgb(160, 200, 240)';"
+              onmouseout="this.style.backgroundColor='rgb(189, 215, 242)';"
+            >
+              Download Transcription
+            </a>
           </div>
         </div>
         <div id="tab-test" class="chat-container tab-content">
@@ -468,18 +470,6 @@
       }
     </style>
 
-
-<footer style="
-border-top: 1px solid rgb(187, 187, 187);
-background-color: white;
-text-align: center;
-position: fixed;
-bottom: 0;
-width: 100%;
-font-size: 12px;
-color: dodgerblue;
-">
-<p style="margin-left: 10px">&copy; 2024 Team Polygoat</p>
-</footer>
+    <div class="footer">&copy; 2024 Team Polygoat</div>
   </body>
 </html>

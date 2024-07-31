@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block content %}
+<div class="quiz-container">
+    <div class="question">{{ question }}</div>
+    <ul class="options">
+        {% for option in options %}
+            <li><button onclick="submitAnswer('{{ option }}')">{{ option }}</button></li>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+    function submitAnswer(selectedOption) {
+        const cardId = "{{ card_id }}";
+        const language = "{{ language }}";
+        fetch('/answer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                card_id: cardId,
+                selected_option: selectedOption,
+                language: language
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (data.message) {
+                    alert(data.message);
+                    location.href = '/';
+                } else {
+                    document.querySelector('.question').textContent = data.question;
+                    const optionsList = document.querySelector('.options');
+                    optionsList.innerHTML = '';
+                    data.options.forEach(option => {
+                        const li = document.createElement('li');
+                        const button = document.createElement('button');
+                        button.textContent = option;
+                        button.onclick = () => submitAnswer(option);
+                        li.appendChild(button);
+                        optionsList.appendChild(li);
+                    });
+                }
+            } else {
+                alert('Error: ' + data.error);
+            }
+        });
+    }
+</script>
+{% endblock %}

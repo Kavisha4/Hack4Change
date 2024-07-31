@@ -51,7 +51,7 @@
         </div>
         <div class="sidebar-option" onclick="showTab(this, 'tab-analysis')">
           <i class="fa fa-search" style="font-size: 20px"></i
-          >&nbsp;&nbsp;Analysis
+          >&nbsp;&nbsp;Course Recommendations
         </div>
         <div class="sidebar-option" onclick="showTab(this, 'tab-translator')">
           <i class="fa fa-film" style="font-size: 20px"></i>&nbsp;&nbsp;Video
@@ -85,9 +85,16 @@
             <div class="chat-select-language">
               <p>Select Language:</p>
               <select id="select-language-chatbot">
-                <option value="tamil">Tamil</option>
                 <option value="hindi">Hindi</option>
+                <option value="tamil">Tamil</option>
                 <option value="telugu">Telugu</option>
+                <option value="assamese">Assamese</option>
+                <option value="bengali">Bengali</option>
+                <option value="gujarati">Gujarati</option>
+                <option value="kannada">Kannada</option>
+                <option value="malayalam">Malayalam</option>
+                <option value="marathi">Marathi</option>
+                <option value="nepali">Nepali</option>
               </select>
             </div>
           </div>
@@ -165,11 +172,16 @@
             <div class="chat-select-language">
               <p>Select Language:</p>
               <select id="select-language-translation">
-                <option value="tamil">Tamil</option>
                 <option value="hindi">Hindi</option>
+                <option value="tamil">Tamil</option>
                 <option value="telugu">Telugu</option>
+                <option value="assamese">Assamese</option>
+                <option value="bengali">Bengali</option>
+                <option value="gujarati">Gujarati</option>
                 <option value="kannada">Kannada</option>
                 <option value="malayalam">Malayalam</option>
+                <option value="marathi">Marathi</option>
+                <option value="nepali">Nepali</option>
               </select>
             </div>
             <br />
@@ -203,14 +215,29 @@
               filename='videos/translated_video/translated_video.mp4') }}
               type="video/mp4"> Your browser does not support the video tag.
             </video>
-            <h3>Translated Text:</h3>
+            <h3>Translated Text</h3>
             <p id="translated-text"></p>
-            <a
-              id="download-transcription"
-              href="/static/transcription/transcription.txt"
-              download
-              >Download Transcription</a
-            >
+            <a id="download-transcription" 
+   href="/static/transcription/transcription.txt" 
+   download 
+   style="
+     display: inline-block; 
+     border: none; 
+     background-color: rgb(189, 215, 242); 
+     color: black; 
+     padding: 10px 20px; 
+     border-radius: 30px; 
+     font-weight: 600; 
+     cursor: pointer; 
+     font-size: 14px; 
+     text-align: center; 
+     text-decoration: none; 
+     transition: background-color 0.3s ease;
+   "
+   onmouseover="this.style.backgroundColor='rgb(160, 200, 240)';"
+   onmouseout="this.style.backgroundColor='rgb(189, 215, 242)';">
+  Download Transcription
+</a>
           </div>
         </div>
         <div id="tab-test" class="chat-container tab-content">
@@ -346,11 +373,14 @@
             youtube_url: youtube_url,
             language: language,
           })
-            .done(function () {
+            .done(function (data) {
               $("#progress").hide();
               $("#result").show();
               clearInterval(interval);
               $("#translated-text").text(data.translated_text);
+              const videoElement = $("#translated-video")[0];
+              videoElement.load();
+              videoElement.play();
             })
             .fail(function () {
               alert("An error occurred. Please try again.");
@@ -437,5 +467,19 @@
         color: white;
       }
     </style>
+
+
+<footer style="
+border-top: 1px solid rgb(187, 187, 187);
+background-color: white;
+text-align: center;
+position: fixed;
+bottom: 0;
+width: 100%;
+font-size: 12px;
+color: dodgerblue;
+">
+<p style="margin-left: 10px">&copy; 2024 Team Polygoat</p>
+</footer>
   </body>
 </html>

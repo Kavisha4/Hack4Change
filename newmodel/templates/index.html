@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome to the Quiz App</h2>
+    <div class="start-quiz">
+        <label for="language">Choose Language:</label>
+        <select id="language">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="kn">Kannada</option>
+            <option value="ta">Tamil</option>
+            <option value="te">Telugu</option>
+        </select>
+        <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+    <div id="quiz-container"></div>
+</div>
+<script>
+    function startQuiz() {
+        const language = document.getElementById('language').value;
+        fetch('/start_quiz', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ language: language }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                renderQuiz(data.question, data.options, data.card_id, data.language);
+            } else {
+                alert(data.message);
+            }
+        });
+    }
+
+    function renderQuiz(question, options, cardId, language) {
+        const quizContainer = document.getElementById('quiz-container');
+        quizContainer.innerHTML = `
+            <div class="quiz-container">
+                <div class="question">${question}</div>
+                <ul class="options">
+                    ${options.map(option => `<li><button onclick="submitAnswer('${cardId}', '${option}', '${language}')">${option}</button></li>`).join('')}
+                </ul>
+            </div>
+        `;
+    }
+
+    function submitAnswer(cardId, selectedOption, language) {
+        fetch('/answer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ card_id: cardId, selected_option: selectedOption, language: language }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (data.message) {
+                    alert(data.message);
+                    location.href = '/';
+                } else {
+                    renderQuiz(data.question, data.options, data.card_id, data.language);
+                }
+            } else {
+                alert('Error: ' + data.error);
+            }
+        });
+    }
+</script>
+{% endblock %}

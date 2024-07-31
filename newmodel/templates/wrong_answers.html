@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wrong Answers</title>
+</head>
+<body>
+    <h1>Wrong Answers for Today</h1>
+    <ul>
+        {% for entry in wrong_answers %}
+            <li>
+                <p><strong>Question ID:</strong> {{ entry.card_id }}</p>
+                <p><strong>Selected Option:</strong> {{ entry.selected_option }}</p>
+                <p><strong>Correct Option:</strong> {{ entry.correct_option }}</p>
+                <p><strong>Time:</strong> {{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

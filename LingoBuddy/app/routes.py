@@ -1,4 +1,4 @@
-from flask import current_app as app, render_template, request, jsonify, send_file, url_for, send_from_directory, session, redirect
+from flask import current_app as app, render_template, request, jsonify, session
 import requests
 import os
 import json
@@ -8,7 +8,7 @@ import PyPDF2
 import chromadb
 from audio_translation import (
     download_youtube_video, extract_audio_from_video, transcribe_audio,
-    translate_text_to_tamil, generate_tamil_audio, overlay_audio_on_video,
+    translate_text_to_tamil, generate_new_audio, overlay_audio_on_video,
     save_transcriptions_to_txt, clear_folders
 )
 import time
@@ -160,9 +160,20 @@ def get_embeddings():
 @app.route("/get_response", methods=["POST"])
 def get_response():
     user_input = request.json.get("message")
-    print(request.json.get("language"))
-    translated_input = GoogleTranslator(source='ta', target='en').translate(user_input)
-
+    language=request.json.get("language")
+    language_codes = {
+    'hindi': 'hi',
+    'tamil': 'ta',
+    'telugu': 'te',
+    'assamese': 'as',
+    'gujarati': 'gu',
+    'bengali': 'bn',
+    'kannada': 'kn',
+    'malayalam': 'ml',
+    'marathi': 'mr',
+    'nepali': 'ne'
+    }
+    translated_input = GoogleTranslator(source=language_codes[language], target='en').translate(user_input)
     relevant_docs = []  
     
     for doc in local_embeddings:
@@ -204,25 +215,41 @@ def get_response():
 
     api_response = data.get("choices", [{}])[0].get("message", {}).get("content", "Sorry, I couldn't process that.")
 
-    translated_response = GoogleTranslator(source='en', target='ta').translate(api_response)
+    translated_response = GoogleTranslator(source='en', target=language_codes[language]).translate(api_response)
     return jsonify({"response": translated_response})
 
 @app.route('/video_translation', methods=['POST'])
 def video_translation():
+    clear_folders([
+        'app/static/videos/translated_video',
+        'app/static/transcription'
+    ])
     youtube_url = request.form['youtube_url']
-    print(request.form["language"])
+    language=request.form["language"]
+    language_codes = {
+    'hindi': 'hi',
+    'tamil': 'ta',
+    'telugu': 'te',
+    'assamese': 'as',
+    'gujarati': 'gu',
+    'bengali': 'bn',
+    'kannada': 'kn',
+    'malayalam': 'ml',
+    'marathi': 'mr',
+    'nepali': 'ne'
+    }
     
     # Define paths
     video_path = 'app/static/videos/source_video/video.mp4'
     audio_path = 'app/static/audio/audio.wav'
-    tamil_audio_path = 'app/static/translated_audio/tamil_audio.mp3'
+    new_audio_path = 'app/static/translated_audio/new_audio.mp3'
     final_video_path = 'app/static/videos/translated_video/translated_video.mp4'
     transcription_txt_path = 'app/static/transcription/transcription.txt'
     
     # Ensure directories exist
     os.makedirs(os.path.dirname(video_path), exist_ok=True)
     os.makedirs(os.path.dirname(audio_path), exist_ok=True)
-    os.makedirs(os.path.dirname(tamil_audio_path), exist_ok=True)
+    os.makedirs(os.path.dirname(new_audio_path), exist_ok=True)
     os.makedirs(os.path.dirname(final_video_path), exist_ok=True)
     os.makedirs(os.path.dirname(transcription_txt_path), exist_ok=True)
     
@@ -231,12 +258,12 @@ def video_translation():
     extract_audio_from_video(video_path, audio_path)
     
     transcription = transcribe_audio(audio_path)
-    translated_text = translate_text_to_tamil(transcription)
-    generate_tamil_audio(translated_text, tamil_audio_path)
+    translated_text = translate_text_to_tamil(transcription,language_codes[language])
+    generate_new_audio(translated_text, new_audio_path,language_codes[language])
     
     save_transcriptions_to_txt(transcription, translated_text, transcription_txt_path)
     
-    overlay_audio_on_video(video_path, tamil_audio_path, final_video_path)
+    overlay_audio_on_video(video_path, new_audio_path, final_video_path)
     
     # Delay to ensure all processes are completed
     time.sleep(2)

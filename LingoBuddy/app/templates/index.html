@@ -240,8 +240,32 @@
         </div>
       </div>
     </div>
+    <div class="float-info-icon">i</div>
+    <div class="float-info-tooltip">
+      <b>Limitations:</b><br />
+      1. For Chatbot upload files of pages 1 or 2 as we are operating on free
+      credit tier.<br />
+      2. For Video translation, give only videos of duration 30 seconds to 1
+      minute, as we are operating on free cloud credit tier.<br />
+      Happy Learning! Namaste 🙏
+    </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script>
+      const tooltipContainer =
+        document.getElementsByClassName("float-info-icon")[0];
+      const tooltipText =
+        document.getElementsByClassName("float-info-tooltip")[0];
+
+      tooltipContainer.addEventListener("mouseover", () => {
+        document.getElementsByClassName("float-info-tooltip")[0].style.display =
+          "block";
+      });
+
+      tooltipContainer.addEventListener("mouseout", () => {
+        document.getElementsByClassName("float-info-tooltip")[0].style.display =
+          "none";
+      });
+
       document
         .getElementById("file-input")
         .addEventListener("change", function () {

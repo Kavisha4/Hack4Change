@@ -158,7 +158,7 @@
           >
             Show Recommendations
           </button>
-          <div class="div-recommended-contents">
+          <div style="display: none" class="div-recommended-contents">
             <p><b>Recommendations:</b></p>
             <div id="list-recommendations"></div>
           </div>
@@ -348,9 +348,19 @@
           .then((data) => {
             let text = "";
             data.recommended_content.forEach((item) => {
-              text = text + item + "<br />";
+              const div =
+                "<div class='cardview'><img src='/static/images/udemy.png'/><div><p class='title'>" +
+                item +
+                "</p><p class='link'>link</p></div></div>";
+              text = text + div + "";
             });
             document.getElementById("list-recommendations").innerHTML = text;
+
+            document.getElementsByClassName(
+              "div-recommended-contents"
+            )[0].style.display = "block";
+            document.getElementById("list-recommendations").style.height =
+              "100px";
           });
       }
 

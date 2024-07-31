@@ -391,16 +391,16 @@ body {
 
 .float-info-icon {
   left: 30px;
-  bottom: 30px;
+  bottom: 100px;
   position: fixed;
   background-color: dodgerblue;
   z-index: 1000;
   border-radius: 30px;
-  height: 60px;
-  width: 60px;
-  line-height: 60px;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
   text-align: center;
-  font-size: 30px;
+  font-size: 22px;
   color: white;
   font-family: "Noto Serif Khitan Small Script", serif;
   font-style: normal;
@@ -417,8 +417,9 @@ body {
 
 .float-info-tooltip {
   padding: 10px 20px 10px 20px;
-  left: 100px;
-  bottom: 30px;
+  width: 250px;
+  left: 90px;
+  bottom: 100px;
   z-index: 1000;
   background-color: rgb(221, 238, 255);
   border-radius: 10px;

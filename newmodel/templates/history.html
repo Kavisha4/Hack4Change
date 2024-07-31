@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}History{% endblock %}
+
+{% block content %}
+<h2>History</h2>
+<p>Total answered today: {{ total_answered_today }}</p>
+<p>Correct answers: {{ correct_answers }}</p>
+<p>Wrong answers: {{ wrong_answers }}</p>
+<ul>
+    {% for date in history_dates %}
+        <li>{{ date._id }}: {{ date.count }} cards</li>
+    {% endfor %}
+</ul>
+{% endblock %}

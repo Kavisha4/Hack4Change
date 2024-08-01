@@ -7,7 +7,7 @@
         Deployment
     </a>
     <br/>
-    📹<a href="https://demo-video-link.com" style="display: inline-block; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #007bff; background-color: #f8f9fa; font-size: 16px; text-align: center;">
+    📹<a href="https://youtu.be/oQCjwEJQZIM" style="display: inline-block; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #007bff; background-color: #f8f9fa; font-size: 16px; text-align: center;">
          Demo Video
     </a>
     <br/>

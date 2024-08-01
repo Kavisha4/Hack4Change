@@ -7,14 +7,19 @@ import os
 import shutil
 import time
 import textwrap
+import youtube_dl
 
 def download_youtube_video(youtube_url, output_path):
     ydl_opts = {
         'format': 'best',
-        'outtmpl': output_path,
+        'nocheckcertificate': True,
+        'proxy': '',
+        'verbose': True,
+        'outtmpl': output_path
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([youtube_url])
+
 
 def extract_audio_from_video(video_path, audio_path):
     video = VideoFileClip(video_path)
@@ -27,6 +32,19 @@ def transcribe_audio(audio_path):
         audio = recognizer.record(source)
     transcription = recognizer.recognize_google(audio)
     return transcription
+
+"""def transcribe_audio(audio_path):
+    recognizer = sr.Recognizer()
+    with sr.AudioFile(audio_path) as source:
+        audio = recognizer.record(source)
+    try:
+        # Using pocketsphinx for offline recognition
+        transcription = recognizer.recognize_sphinx(audio)
+    except sr.UnknownValueError:
+        transcription = "Pocketsphinx could not understand the audio"
+    except sr.RequestError as e:
+        transcription = f"Pocketsphinx request error: {e}"
+    return transcription"""
 
 def translate_text_to_tamil(text,language):
     translator = GoogleTranslator(source='auto', target=language)

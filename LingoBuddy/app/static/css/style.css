@@ -486,3 +486,34 @@ body {
   color: dodgerblue;
   font-weight: bold;
 }
+
+#docu-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 20px;
+}
+
+.docu-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  transition: background-color 0.3s, border-color 0.3s;
+  text-align: center;
+}
+
+.docu-link:hover {
+  background-color: #e0e0e0;
+  border-color: #bbb;
+}
+
+.docu-link i {
+  font-size: 50px;
+  margin-bottom: 8px;
+}

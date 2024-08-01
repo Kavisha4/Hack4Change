@@ -60,6 +60,12 @@
         <div class="sidebar-option" onclick="showTab(this, 'tab-test')">
           <i class="fa fa-bookmark" style="font-size: 20px"></i>&nbsp;&nbsp;Quiz
         </div>
+        <div class="sidebar-option" onclick="showTab(this, 'tab-test')">
+          <i class="fa fa-chrome" style="font-size: 20px"></i>&nbsp;&nbsp;Chrome Extension
+        </div>
+        <div class="sidebar-option" onclick="showTab(this, 'tab-documentation')">
+          <i class="fa fa-info" style="font-size: 20px"></i>&nbsp;&nbsp;Documentation
+        </div>
       </div>
       <div class="container">
         <div id="tab-chatbot" class="chat-container tab-content">
@@ -265,6 +271,30 @@
               <div id="question-container"></div>
               <div id="options-container"></div>
             </div>
+          </div>
+        </div>
+        <div id="tab-documentation" class="chat-container tab-content">
+          <div class="chat-title">
+            <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
+            <p>Docu<span>Mentation</span></p>
+          </div>
+          <div id="docu-links">
+            <a href="https://github.com/your-repo" class="docu-link" target="_blank">
+                <i class="fa fa-github"></i>
+                <div>GitHub Repository</div>
+            </a>
+            <a href="https://github.com/your-repo" class="docu-link" target="_blank">
+                <i class="fa fa-youtube"></i>
+                <div>Demo Video</div>
+            </a>
+            <a href="https://github.com/your-repo" class="docu-link" target="_blank">
+                <i class="fa fa-file"></i>
+                <div>Solution Document</div>
+            </a>
+            <a href="https://github.com/your-repo" class="docu-link" target="_blank">
+                <i class="fa fa-folder"></i>
+                <div>Approach PPT</div>
+            </a>
           </div>
         </div>
       </div>

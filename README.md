@@ -59,12 +59,73 @@ Students from different vernacular backgrounds.
 - Created a Google Chrome extension for the same
 - Built a quizzing platform which can be in any language you require
 
+## LLM-RAG Based Multi-lingual Chatbot
+
+1. RAG Search (Retrieval-Augmented Generation):
+   - RAG combines retrieval and generation to produce more accurate and contextually relevant responses.
+   - The model first retrieves relevant documents or text chunks from a knowledge base and then generates an answer based on the retrieved content.
+     
+2. Chroma DB:
+   - Chroma DB is a vector database used to store and query embeddings (vector representations) of documents.
+   - It helps in efficient similarity searches by comparing user queries with stored document embeddings to find the most relevant matches.
+     
+3. Context-Based Answering:
+   - The chatbot uses context from previously retrieved documents to generate responses.
+   - By providing relevant context, it ensures that the answers are coherent and relevant to the user's query.
+     
+4. LLM Model (Large Language Model):
+   - The chatbot uses a large language model Mixtral to understand and generate human-like text based on the input it receives.
+   - This model helps in generating fluent and contextually appropriate responses to user queries.
+
+5. Fireworks AI:
+   - Fireworks AI provides API endpoints for various AI tasks, including embeddings and chat completions.
+   - In this chatbot, Fireworks AI is used to generate embeddings for documents and to facilitate chat-based interactions with the user.
+     
+## Video Translator
+
+1. YouTube Video Download:
+   - The system uses a function to download videos from YouTube, saving them locally for further processing.
+   - This allows users to input any YouTube link and have the video content processed.
+     
+2. Audio Extraction and Transcription:
+   - After downloading the video, the audio is extracted.
+   - The extracted audio is then transcribed into text, which forms the basis for translation.
+
+3. Text Translation:
+   - The transcribed text is translated into Tamil (or other specified languages) using a translation service.
+   - This enables the content to be accessible in different languages.
+
+4. Audio Generation and Overlay:
+   - A new audio file is generated from the translated text.
+   - This new audio is then overlaid onto the original video, creating a translated version of the video with synchronized audio.
+
+## Quiz Platform
+
+1. Quiz Setup and Session Management:
+   - The quiz functionality sets up questions and manages the quiz state using session variables.
+   - Each user session tracks the current question index and the user's score.
+
+2. Question Handling:
+   - Questions are served one at a time, with multiple-choice options provided.
+   - The user's answer is checked against the correct answer, and their score is updated accordingly.
+
+4. Question Navigation:
+   - The system handles navigation between questions, ensuring the user can proceed through the quiz seamlessly.
+   - After answering all questions, the quiz is marked as completed, and the final score is calculated.
+
+5. Scoring and Results:
+   - The user's score is calculated based on their correct answers.
+   - The final results are displayed at the end of the quiz, showing the user's performance.
+
+6. Subject and Skill Level Recommendations:
+   - The quiz includes a feature for recommending content based on the subject and skill level selected by the user.
+   - This personalized recommendation system helps users find relevant learning materials.
+
 ## How to Use
 
 ### Prerequisites
 
-- Python 3.x
-- Node.js
+- Python 3.11
 - Chrome browser
 
 ### Running the Project

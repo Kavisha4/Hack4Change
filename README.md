@@ -42,37 +42,29 @@ Students from different vernacular backgrounds.
 - Node.js
 - Chrome browser
 
-### Installation
+### Running the Project
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/multilingual-education-enhancer.git
+    git clone [https://github.com/your-username/multilingual-education-enhancer.git](https://github.com/Kavisha4/Hack4Change.git)
     ```
 2. Navigate to the project directory:
     ```bash
-    cd multilingual-education-enhancer
+    cd LingoBuddy
     ```
 3. Install Python dependencies:
     ```bash
     pip install -r requirements.txt
     ```
-4. Install JavaScript dependencies:
+4. Run the script:
     ```bash
-    npm install
+    python run.py
     ```
 
-### Running the Project
+### Running the Chrome Extension
 
-1. Start the backend server:
-    ```bash
-    python server.py
-    ```
-2. Open the frontend:
-    ```bash
-    open index.html
-    ```
-3. Load the Chrome extension:
+1. Load the Chrome extension:
     - Open Chrome and go to `chrome://extensions/`
     - Enable Developer mode
-    - Click "Load unpacked" and select the `chrome-extension` directory
+    - Click "Load unpacked" and select the `Chrome Extension` directory
 

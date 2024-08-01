@@ -1,5 +1,27 @@
 # skill.io
 
+## Important Links
+
+<div>
+    🚀<a href="https://samyuktha1262.pythonanywhere.com/" style="display: inline-block; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #007bff; background-color: #f8f9fa; font-size: 16px; text-align: center;">
+        Deployment
+    </a>
+    <br/>
+    📹<a href="https://demo-video-link.com" style="display: inline-block; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #007bff; background-color: #f8f9fa; font-size: 16px; text-align: center;">
+         Demo Video
+    </a>
+    <br/>
+    📄<a href="https://technical-document-link.com" style="display: inline-block; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #007bff; background-color: #f8f9fa; font-size: 16px; text-align: center;">
+         Technical Documentation
+    </a>
+    <br/>
+    📘<a href="https://solution-document-link.com" style="display: inline-block; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #007bff; background-color: #f8f9fa; font-size: 16px; text-align: center;">
+         Solution PDF
+    </a>
+</div>
+
+
+
 ## Introduction
 
 Today's online education doesn’t encompass learning modules in the various Indian languages. Our aim is to bridge the gap in Online Learning Platforms to students from various vernacular backgrounds in India and give them access to educational resources.

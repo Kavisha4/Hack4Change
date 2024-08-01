@@ -46,7 +46,7 @@ Students from different vernacular backgrounds.
 
 1. Clone the repository:
     ```bash
-    git clone [https://github.com/your-username/multilingual-education-enhancer.git](https://github.com/Kavisha4/Hack4Change.git)
+    git clone https://github.com/your-username/multilingual-education-enhancer.git
     ```
 2. Navigate to the project directory:
     ```bash

@@ -60,7 +60,7 @@
         <div class="sidebar-option" onclick="showTab(this, 'tab-test')">
           <i class="fa fa-bookmark" style="font-size: 20px"></i>&nbsp;&nbsp;Quiz
         </div>
-        <div class="sidebar-option" onclick="showTab(this, 'tab-test')">
+        <div class="sidebar-option" onclick="showTab(this, 'tab-chrome-extension')">
           <i class="fa fa-chrome" style="font-size: 20px"></i>&nbsp;&nbsp;Chrome Extension
         </div>
         <div class="sidebar-option" onclick="showTab(this, 'tab-documentation')">
@@ -294,6 +294,37 @@
             <a href="https://github.com/your-repo" class="docu-link" target="_blank">
                 <i class="fa fa-folder"></i>
                 <div>Approach PPT</div>
+            </a>
+          </div>
+        </div>
+        <div id="tab-chrome-extension" class="chat-container tab-content">
+          <div class="chat-title">
+            <img src="{{ url_for('static', filename='images/chatbot.gif') }}" />
+            <p>Chrome<span>Extension</span></p>
+          </div>
+          <div>
+              <a
+                id="download-chrome-extension"
+                href="/static/Chrome Extension.zip"
+                download
+                style="
+                    display: inline-block;
+                    border: none;
+                    background-color: rgb(189, 215, 242);
+                    color: black;
+                    padding: 10px 20px;
+                    border-radius: 30px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    font-size: 14px;
+                    text-align: center;
+                    text-decoration: none;
+                    transition: background-color 0.3s ease;
+                "
+                onmouseover="this.style.backgroundColor='rgb(160, 200, 240)';"
+                onmouseout="this.style.backgroundColor='rgb(189, 215, 242)';"
+            >
+                Download Chrome Extension
             </a>
           </div>
         </div>

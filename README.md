@@ -15,7 +15,7 @@
          Technical Documentation
     </a>
     <br/>
-    📘<a href="https://solution-document-link.com" style="display: inline-block; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #007bff; background-color: #f8f9fa; font-size: 16px; text-align: center;">
+    📘<a href="polyGOAT_Prototype.pdf" style="display: inline-block; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #007bff; background-color: #f8f9fa; font-size: 16px; text-align: center;">
          Solution PDF
     </a>
     <br/>

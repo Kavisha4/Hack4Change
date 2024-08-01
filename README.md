@@ -1,4 +1,4 @@
-# skill.io
+# ![logo](/app/static/images/favicon-32x32.png)skill.io
 
 ## Important Links
 

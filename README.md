@@ -1,4 +1,4 @@
-# Multilingual Education Enhancer
+# skill.io
 
 ## Introduction
 
@@ -9,7 +9,7 @@ Today's online education doesn’t encompass learning modules in the various Ind
 Our motive is to have:
 1. Multilingual learning with translational capabilities, with engaging learning content
 2. Skills assessment and personalised recommendations
-3. Summarised version of a textbook or PDF
+3. RAG based Question Answering on English books using vernacular languages
 4. New transcript/Closed captions in vernacular language
 
 ## Target Consumers

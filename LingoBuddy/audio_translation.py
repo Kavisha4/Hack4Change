@@ -79,5 +79,3 @@ def clear_folders(folders):
     for folder in folders:
         if os.path.exists(folder):
             shutil.rmtree(folder)
-
-youtube_url = "https://www.youtube.com/watch?v=Sn-jsiJOKA8&t=4s"  

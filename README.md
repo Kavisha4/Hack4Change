@@ -1,4 +1,4 @@
-# ![logo](/app/static/images/favicon-32x32.png)skill.io
+# <img src="LingoBuddy/app/static/images/favicon-32x32.png" width="20px"> skill.io
 
 ## Important Links
 

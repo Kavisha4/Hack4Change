@@ -110,7 +110,7 @@ def create_and_store_embeddings(text_content, filename):
         "dimensions": 1536
     }
     headers = {
-        "Authorization": "Bearer YyPiJjsgNkGJRrg7JNjT6mBGAft8mQyAGoXG87YVk2Y6qo7A",
+        "Authorization": "Bearer <API KEY>",
         "Content-Type": "application/json"
     }
     try:
@@ -205,7 +205,7 @@ def get_response():
     headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "Authorization": "Bearer YyPiJjsgNkGJRrg7JNjT6mBGAft8mQyAGoXG87YVk2Y6qo7A"
+    "Authorization": "Bearer <API KEY>"
     }
     response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
     data = response.json()

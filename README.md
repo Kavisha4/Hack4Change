@@ -20,17 +20,16 @@ Students from different vernacular backgrounds.
 
 1. Process the existing English lectures, audios and videos
 2. Generate subtitles for the video using AI and create a corpus of transcripts along with timestamps
-3. Use NLP to identify and categorise the transcript into important topics
-4. Save timestamps corresponding to the topics identified
-5. Perform a translation of the corpus into the preferred language
-6. Integrate the translated vernacular into a single transcript
-7. Create a new audio in the specified vernacular language
-8. Sync the new transcript along with new dubbed audio
+3. Save timestamps corresponding to the topics identified
+4. Perform a translation of the corpus into the preferred language
+5. Integrate the translated vernacular into a single transcript
+6. Create a new audio in the specified vernacular language
+7. Sync the new transcript along with new dubbed audio
 
 ## Progress So Far
 
 - Created a chatbot using Python
-- Developed a simple front end with JavaScript
+- Developed a simple front end using Flask and Jinja2 templates with HTML, CSS, and JavaScript.
 - Created a Google Chrome extension for the same
 - Built a quizzing platform which can be in any language you require
 
